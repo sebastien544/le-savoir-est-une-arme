@@ -557,6 +557,18 @@
   .full-bleed .highlights li.sel::before { content: '▸'; }
   .full-bleed section { max-width: 1200px; margin: 0 auto; }
 
+  /* CARTE INTERACTIVE */
+  .map-caption { text-align: center; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(200,150,62,0.85); margin-bottom: 1.5rem; }
+  .thai-map { position: relative; width: 100%; max-width: 360px; margin: 0 auto 3.5rem; }
+  .thai-map-img { width: 100%; height: auto; display: block; opacity: 0; transition: opacity 0.6s ease; filter: drop-shadow(0 12px 32px rgba(0,0,0,0.45)); }
+  .thai-map-img.loaded { opacity: 1; }
+  .map-pin { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 0.3rem; background: none; border: none; padding: 0; cursor: pointer; }
+  .map-pin-dot { width: 13px; height: 13px; border-radius: 50%; background: var(--gold); border: 2px solid #fff; box-shadow: 0 0 0 0 rgba(200,150,62,0.6); animation: pinPulse 2.6s ease-out infinite; transition: transform 0.2s, background 0.2s; }
+  .map-pin-label { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; white-space: nowrap; text-shadow: 0 1px 5px rgba(0,0,0,0.85); }
+  .map-pin:hover .map-pin-dot, .map-pin:focus-visible .map-pin-dot { background: var(--gold-light); transform: scale(1.3); }
+  .map-pin:hover .map-pin-label, .map-pin:focus-visible .map-pin-label { color: var(--gold-light); }
+  @keyframes pinPulse { 0% { box-shadow: 0 0 0 0 rgba(200,150,62,0.55); } 70% { box-shadow: 0 0 0 13px rgba(200,150,62,0); } 100% { box-shadow: 0 0 0 0 rgba(200,150,62,0); } }
+
   @media (max-width: 768px) {
     .tab-content.active { grid-template-columns: 1fr; }
     .region-visual { height: 260px; position: static; }
@@ -671,12 +683,22 @@
     <h2 class="section-title">Explorer les <em>régions</em></h2>
     <div class="divider"></div>
 
+    <p class="map-caption">Cliquez une région sur la carte pour la découvrir</p>
+    <div class="thai-map">
+      <img class="thai-map-img" src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Thailand_location_relief_map.svg" alt="Carte en relief de la Thaïlande" loading="lazy" decoding="async" onload="this.classList.add('loaded')">
+      <button class="map-pin" style="left:21.1%;top:11.9%" onclick="showTab('nord')" aria-label="Région Nord"><span class="map-pin-dot"></span><span class="map-pin-label">Nord</span></button>
+      <button class="map-pin" style="left:38.2%;top:45.1%" onclick="showTab('bangkok')" aria-label="Région de Bangkok"><span class="map-pin-dot"></span><span class="map-pin-label">Bangkok</span></button>
+      <button class="map-pin" style="left:64.4%;top:27.4%" onclick="showTab('isaan')" aria-label="Région Isaan"><span class="map-pin-dot"></span><span class="map-pin-label">Isaan</span></button>
+      <button class="map-pin" style="left:32.7%;top:72.9%" onclick="showTab('sud-golfe')" aria-label="Région Sud — Golfe"><span class="map-pin-dot"></span><span class="map-pin-label">Golfe</span></button>
+      <button class="map-pin" style="left:14.5%;top:83.7%" onclick="showTab('sud-andaman')" aria-label="Région Sud — Andaman"><span class="map-pin-dot"></span><span class="map-pin-label">Andaman</span></button>
+    </div>
+
     <div class="tabs">
-      <button class="tab-btn active" onclick="showTab('bangkok', this)">Bangkok</button>
-      <button class="tab-btn" onclick="showTab('nord', this)">Nord</button>
-      <button class="tab-btn" onclick="showTab('sud-golfe', this)">Sud — Golfe</button>
-      <button class="tab-btn" onclick="showTab('sud-andaman', this)">Sud — Andaman</button>
-      <button class="tab-btn" onclick="showTab('isaan', this)">Isaan</button>
+      <button class="tab-btn active" data-tab="bangkok" onclick="showTab('bangkok', this)">Bangkok</button>
+      <button class="tab-btn" data-tab="nord" onclick="showTab('nord', this)">Nord</button>
+      <button class="tab-btn" data-tab="sud-golfe" onclick="showTab('sud-golfe', this)">Sud — Golfe</button>
+      <button class="tab-btn" data-tab="sud-andaman" onclick="showTab('sud-andaman', this)">Sud — Andaman</button>
+      <button class="tab-btn" data-tab="isaan" onclick="showTab('isaan', this)">Isaan</button>
     </div>
 
     <div id="tab-bangkok" class="tab-content active">
@@ -951,8 +973,8 @@
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
     document.getElementById('tab-' + name).classList.add('active');
-    btn.classList.add('active');
-    btn.setAttribute('aria-selected', 'true');
+    if (!btn) btn = document.querySelector('.tab-btn[data-tab="' + name + '"]');
+    if (btn) { btn.classList.add('active'); btn.setAttribute('aria-selected', 'true'); }
   }
 
   // Régions : clic sur un lieu → affiche sa photo dans l'encadré de droite
