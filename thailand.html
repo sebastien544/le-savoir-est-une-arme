@@ -542,8 +542,12 @@
   .full-bleed .section-title { color: white; }
   .full-bleed .region-text h3 { color: #fff; }
   .full-bleed .region-text p { color: rgba(255,255,255,0.82); }
-  .full-bleed .highlights li { color: rgba(255,255,255,0.92); border-bottom-color: rgba(200,150,62,0.4); font-size: 0.95rem; }
+  .full-bleed .highlights li { color: rgba(255,255,255,0.92); border-bottom-color: rgba(200,150,62,0.4); font-size: 0.95rem; cursor: pointer; transition: color .25s, padding-left .25s, border-color .25s; }
   .full-bleed .highlights li::before { color: var(--gold); }
+  .full-bleed .highlights li:hover { color: #fff; padding-left: .4rem; border-bottom-color: var(--gold); }
+  .full-bleed .highlights li.sel { color: var(--gold-light); }
+  .full-bleed .highlights li.sel::before { content: '▸'; }
+  .full-bleed .highlights::after { content: 'Cliquez un lieu pour afficher sa photo →'; display: block; margin-top: 1rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(200,150,62,0.75); }
   .full-bleed section { max-width: 1200px; margin: 0 auto; }
 
   @media (max-width: 768px) {
@@ -672,12 +676,12 @@
       <div class="region-text">
         <h3 style="color:white;">Bangkok</h3>
         <p style="color:rgba(255,255,255,0.7);">Capitale bouillonnante et sensorielle, Bangkok est une ville qui ne dort jamais. Des ruelles étroites aux avenues XXL, des marchés flottants aux rooftop-bars, elle incarne le contraste fascinant de la Thaïlande contemporaine.</p>
-        <ul class="highlights" >
-          <li >Wat Pho & le Grand Palais</li>
-          <li >Marché flottant de Damnoen Saduak</li>
-          <li >Street food de Yaowarat (Chinatown)</li>
-          <li >Khao San Road & vie nocturne</li>
-          <li >Jim Thompson House</li>
+        <ul class="highlights">
+          <li data-img="https://loremflickr.com/800/600/bangkok,temple?lock=1" data-label="Wat Pho · Grand Palais">Wat Pho & le Grand Palais</li>
+          <li data-img="https://loremflickr.com/800/600/floatingmarket,thailand?lock=2" data-label="Damnoen Saduak">Marché flottant de Damnoen Saduak</li>
+          <li data-img="https://loremflickr.com/800/600/bangkok,streetfood?lock=3" data-label="Yaowarat · Chinatown">Street food de Yaowarat (Chinatown)</li>
+          <li data-img="https://loremflickr.com/800/600/bangkok,nightlife?lock=4" data-label="Khao San Road">Khao San Road & vie nocturne</li>
+          <li data-img="https://loremflickr.com/800/600/bangkok,thaihouse?lock=5" data-label="Jim Thompson House">Jim Thompson House</li>
         </ul>
       </div>
       <div class="region-visual" data-label="Bangkok · 10M habitants">
@@ -690,12 +694,12 @@
       <div class="region-text">
         <h3 style="color:white;">Le Nord</h3>
         <p style="color:rgba(255,255,255,0.7);">Terre de montagnes verdoyantes, de temples anciens et de cultures tribales, le nord offre une Thaïlande plus contemplative. Chiang Mai, capitale culturelle, est le point de départ idéal pour explorer la région dorée.</p>
-        <ul class="highlights" >
-          <li >Chiang Mai — temples et marchés de nuit</li>
-          <li >Chiang Rai & le Triangle d'Or</li>
-          <li >Pai — la ville bohème de montagne</li>
-          <li >Treks dans les villages tribaux</li>
-          <li >Sanctuaires d'éléphants éthiques</li>
+        <ul class="highlights">
+          <li data-img="https://loremflickr.com/800/600/chiangmai,temple?lock=6" data-label="Chiang Mai">Chiang Mai — temples et marchés de nuit</li>
+          <li data-img="https://loremflickr.com/800/600/chiangrai,whitetemple?lock=7" data-label="Chiang Rai · Triangle d'Or">Chiang Rai & le Triangle d'Or</li>
+          <li data-img="https://loremflickr.com/800/600/pai,thailand,mountains?lock=8" data-label="Pai">Pai — la ville bohème de montagne</li>
+          <li data-img="https://loremflickr.com/800/600/thailand,trekking,mountains?lock=9" data-label="Villages tribaux">Treks dans les villages tribaux</li>
+          <li data-img="https://loremflickr.com/800/600/elephant,thailand?lock=10" data-label="Sanctuaire d'éléphants">Sanctuaires d'éléphants éthiques</li>
         </ul>
       </div>
       <div class="region-visual" data-label="Chiang Mai · 1600m altitude max">
@@ -708,12 +712,12 @@
       <div class="region-text">
         <h3 style="color:white;">Sud — Golfe de Thaïlande</h3>
         <p style="color:rgba(255,255,255,0.7);">Koh Samui, Koh Phangan et Koh Tao composent le trio insulaire du golfe. Eaux turquoise, plages de sable blanc et vie sous-marine spectaculaire — le paradis balnéaire de carte postale.</p>
-        <ul class="highlights" >
-          <li >Koh Samui — plages & luxe tropical</li>
-          <li >Koh Phangan — Full Moon Party</li>
-          <li >Koh Tao — paradis de la plongée</li>
-          <li >Hua Hin — station balnéaire royale</li>
-          <li >Parc national de Khao Sok</li>
+        <ul class="highlights">
+          <li data-img="https://loremflickr.com/800/600/kohsamui,beach?lock=11" data-label="Koh Samui">Koh Samui — plages & luxe tropical</li>
+          <li data-img="https://loremflickr.com/800/600/kohphangan,beach,party?lock=12" data-label="Koh Phangan">Koh Phangan — Full Moon Party</li>
+          <li data-img="https://loremflickr.com/800/600/scuba,diving,thailand?lock=13" data-label="Koh Tao · plongée">Koh Tao — paradis de la plongée</li>
+          <li data-img="https://loremflickr.com/800/600/huahin,thailand,beach?lock=14" data-label="Hua Hin">Hua Hin — station balnéaire royale</li>
+          <li data-img="https://loremflickr.com/800/600/khaosok,jungle,thailand?lock=15" data-label="Khao Sok">Parc national de Khao Sok</li>
         </ul>
       </div>
       <div class="region-visual" data-label="Golfe · 1500 km de côtes">
@@ -726,12 +730,12 @@
       <div class="region-text">
         <h3 style="color:white;">Sud — Mer d'Andaman</h3>
         <p style="color:rgba(255,255,255,0.7);">La mer d'Andaman, côté ouest, offre des paysages à couper le souffle : falaises karstiques plongeant dans une eau émeraude, grottes secrètes et plages sauvages. La région la plus photographiée du pays.</p>
-        <ul class="highlights" >
-          <li >Phuket — la reine des îles</li>
-          <li >Krabi & les tours karstiques</li>
-          <li >Koh Phi Phi — joyau translucide</li>
-          <li >Koh Lanta — ambiance posée</li>
-          <li >Îles Similan — plongée mondiale</li>
+        <ul class="highlights">
+          <li data-img="https://loremflickr.com/800/600/phuket,beach?lock=16" data-label="Phuket">Phuket — la reine des îles</li>
+          <li data-img="https://loremflickr.com/800/600/krabi,thailand,cliff?lock=17" data-label="Krabi">Krabi & les tours karstiques</li>
+          <li data-img="https://loremflickr.com/800/600/phiphi,island,thailand?lock=18" data-label="Koh Phi Phi">Koh Phi Phi — joyau translucide</li>
+          <li data-img="https://loremflickr.com/800/600/kohlanta,beach,thailand?lock=19" data-label="Koh Lanta">Koh Lanta — ambiance posée</li>
+          <li data-img="https://loremflickr.com/800/600/similan,diving,thailand?lock=20" data-label="Îles Similan">Îles Similan — plongée mondiale</li>
         </ul>
       </div>
       <div class="region-visual" data-label="Andaman · Classé parmi les plus belles mers">
@@ -744,12 +748,12 @@
       <div class="region-text">
         <h3 style="color:white;">L'Isaan</h3>
         <p style="color:rgba(255,255,255,0.7);">Le plateau du Nord-Est reste la région la plus authentique et la moins visitée. Terre agricole aux traditions khmères préservées, ses temples d'Angkor miniatures et sa cuisine pimentée en font une destination pour voyageurs curieux.</p>
-        <ul class="highlights" >
-          <li >Phimai — Angkor thaïlandais</li>
-          <li >Parc historique de Phanom Rung</li>
-          <li >Khon Kaen — capitale régionale</li>
-          <li >Udon Thani & le lac de lotus rose</li>
-          <li >Cuisine locale : som tam, laab</li>
+        <ul class="highlights">
+          <li data-img="https://loremflickr.com/800/600/khmer,temple,thailand?lock=21" data-label="Phimai">Phimai — Angkor thaïlandais</li>
+          <li data-img="https://loremflickr.com/800/600/phanomrung,temple,thailand?lock=22" data-label="Phanom Rung">Parc historique de Phanom Rung</li>
+          <li data-img="https://loremflickr.com/800/600/khonkaen,thailand?lock=23" data-label="Khon Kaen">Khon Kaen — capitale régionale</li>
+          <li data-img="https://loremflickr.com/800/600/lotus,lake,thailand?lock=24" data-label="Lac de lotus rose">Udon Thani & le lac de lotus rose</li>
+          <li data-img="https://loremflickr.com/800/600/somtam,thaifood?lock=25" data-label="Som tam · Laab">Cuisine locale : som tam, laab</li>
         </ul>
       </div>
       <div class="region-visual" data-label="Isaan · La Thaïlande authentique">
@@ -943,6 +947,29 @@
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
   }
+
+  // Régions : clic sur un lieu → affiche sa photo dans l'encadré de droite
+  document.querySelectorAll('.highlights li[data-img]').forEach(li => {
+    li.setAttribute('role', 'button');
+    li.setAttribute('tabindex', '0');
+    const show = () => {
+      const visual = li.closest('.tab-content').querySelector('.region-visual');
+      const img = visual.querySelector('img');
+      const credit = visual.querySelector('.region-photo-credit');
+      img.classList.remove('loaded');
+      img.onload = () => img.classList.add('loaded');
+      img.src = li.getAttribute('data-img');
+      img.alt = li.textContent.trim();
+      visual.setAttribute('data-label', li.getAttribute('data-label'));
+      if (credit) credit.textContent = 'Flickr';
+      li.parentNode.querySelectorAll('li').forEach(x => x.classList.remove('sel'));
+      li.classList.add('sel');
+    };
+    li.addEventListener('click', show);
+    li.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(); }
+    });
+  });
 
   // Accessibilité : onglets + mois opérables au clavier
   document.querySelectorAll('.tab-btn').forEach(b =>
