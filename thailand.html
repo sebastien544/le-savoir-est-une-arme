@@ -963,12 +963,19 @@
       const visual = li.closest('.tab-content').querySelector('.region-visual');
       const img = visual.querySelector('img');
       const credit = visual.querySelector('.region-photo-credit');
-      img.classList.remove('loaded');
-      img.onload = () => img.classList.add('loaded');
-      img.src = li.getAttribute('data-img');
-      img.alt = (li.querySelector('.li-head') || li).textContent.trim();
-      visual.setAttribute('data-label', li.getAttribute('data-label'));
-      if (credit) credit.textContent = 'Wikimedia Commons';
+      const src = li.getAttribute('data-img');
+      const label = (li.querySelector('.li-head') || li).textContent.trim();
+      // Préchargement : on n'échange l'image que lorsqu'elle est prête,
+      // pour éviter le flash sur fond sombre lors du changement d'item.
+      const pre = new Image();
+      pre.onload = () => {
+        img.src = src;            // déjà en cache → bascule instantanée, sans à-coup
+        img.alt = label;
+        img.classList.add('loaded');
+        visual.setAttribute('data-label', li.getAttribute('data-label'));
+        if (credit) credit.textContent = 'Wikimedia Commons';
+      };
+      pre.src = src;
       li.classList.add('sel');
     };
     li.addEventListener('click', show);
