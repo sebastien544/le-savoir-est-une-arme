@@ -560,14 +560,14 @@
   /* CARTE INTERACTIVE */
   .map-caption { text-align: center; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(200,150,62,0.85); margin-bottom: 1.5rem; }
   .thai-map { position: relative; width: 100%; max-width: 360px; margin: 0 auto 3.5rem; }
-  .thai-map-img { width: 100%; height: auto; display: block; opacity: 0; transition: opacity 0.6s ease; filter: drop-shadow(0 12px 32px rgba(0,0,0,0.45)); }
+  .thai-map-img { width: 100%; height: auto; display: block; opacity: 0; transition: opacity 0.6s ease; filter: drop-shadow(0 0 20px rgba(200,150,62,0.35)); }
   .thai-map-img.loaded { opacity: 1; }
   .map-pin { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 0.3rem; background: none; border: none; padding: 0; cursor: pointer; }
-  .map-pin-dot { width: 13px; height: 13px; border-radius: 50%; background: var(--gold); border: 2px solid #fff; box-shadow: 0 0 0 0 rgba(200,150,62,0.6); animation: pinPulse 2.6s ease-out infinite; transition: transform 0.2s, background 0.2s; }
-  .map-pin-label { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; white-space: nowrap; text-shadow: 0 1px 5px rgba(0,0,0,0.85); }
-  .map-pin:hover .map-pin-dot, .map-pin:focus-visible .map-pin-dot { background: var(--gold-light); transform: scale(1.3); }
-  .map-pin:hover .map-pin-label, .map-pin:focus-visible .map-pin-label { color: var(--gold-light); }
-  @keyframes pinPulse { 0% { box-shadow: 0 0 0 0 rgba(200,150,62,0.55); } 70% { box-shadow: 0 0 0 13px rgba(200,150,62,0); } 100% { box-shadow: 0 0 0 0 rgba(200,150,62,0); } }
+  .map-pin-dot { width: 13px; height: 13px; border-radius: 50%; background: #fff; border: 2px solid #5A2D08; box-shadow: 0 0 0 0 rgba(26,15,5,0.55); animation: pinPulse 2.6s ease-out infinite; transition: transform 0.2s, background 0.2s; }
+  .map-pin-label { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; white-space: nowrap; text-shadow: 0 1px 5px rgba(0,0,0,0.9), 0 0 2px rgba(0,0,0,0.9); }
+  .map-pin:hover .map-pin-dot, .map-pin:focus-visible .map-pin-dot { background: var(--red); transform: scale(1.3); }
+  .map-pin:hover .map-pin-label, .map-pin:focus-visible .map-pin-label { color: var(--gold-pale); }
+  @keyframes pinPulse { 0% { box-shadow: 0 0 0 0 rgba(26,15,5,0.5); } 70% { box-shadow: 0 0 0 13px rgba(26,15,5,0); } 100% { box-shadow: 0 0 0 0 rgba(26,15,5,0); } }
 
   @media (max-width: 768px) {
     .tab-content.active { grid-template-columns: 1fr; }
@@ -685,7 +685,7 @@
 
     <p class="map-caption">Cliquez une région sur la carte pour la découvrir</p>
     <div class="thai-map">
-      <img class="thai-map-img" src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Thailand_location_relief_map.svg" alt="Carte en relief de la Thaïlande" loading="lazy" decoding="async" onload="this.classList.add('loaded')">
+      <img class="thai-map-img" src="thailand-map.svg" alt="Carte de la Thaïlande" loading="lazy" decoding="async" onload="this.classList.add('loaded')">
       <button class="map-pin" style="left:21.1%;top:11.9%" onclick="showTab('nord')" aria-label="Région Nord"><span class="map-pin-dot"></span><span class="map-pin-label">Nord</span></button>
       <button class="map-pin" style="left:38.2%;top:45.1%" onclick="showTab('bangkok')" aria-label="Région de Bangkok"><span class="map-pin-dot"></span><span class="map-pin-label">Bangkok</span></button>
       <button class="map-pin" style="left:64.4%;top:27.4%" onclick="showTab('isaan')" aria-label="Région Isaan"><span class="map-pin-dot"></span><span class="map-pin-label">Isaan</span></button>
