@@ -542,9 +542,14 @@
   .full-bleed .section-title { color: white; }
   .full-bleed .region-text h3 { color: #fff; }
   .full-bleed .region-text p { color: rgba(255,255,255,0.82); }
-  .full-bleed .highlights li { color: rgba(255,255,255,0.92); border-bottom-color: rgba(200,150,62,0.4); font-size: 0.95rem; cursor: pointer; transition: color .25s, padding-left .25s, border-color .25s; }
-  .full-bleed .highlights li::before { color: var(--gold); }
-  .full-bleed .highlights li:hover { color: #fff; padding-left: .4rem; border-bottom-color: var(--gold); }
+  .full-bleed .highlights li { color: rgba(255,255,255,0.92); border-bottom-color: rgba(200,150,62,0.4); font-size: 0.95rem; cursor: pointer; flex-wrap: wrap; transition: color .25s, border-color .25s; }
+  .full-bleed .highlights li::before { color: var(--gold); align-self: flex-start; }
+  .full-bleed .highlights li .li-head { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+  .full-bleed .highlights li .li-head::after { content: '▾'; color: var(--gold); font-size: .75rem; opacity: .7; transition: transform .25s; }
+  .full-bleed .highlights li.sel .li-head::after { transform: rotate(180deg); }
+  .full-bleed .highlights li .li-desc { flex-basis: 100%; max-height: 0; overflow: hidden; opacity: 0; font-size: .82rem; line-height: 1.6; color: rgba(255,255,255,0.72); transition: max-height .3s ease, opacity .3s ease, margin-top .3s ease; }
+  .full-bleed .highlights li.sel .li-desc { max-height: 160px; opacity: 1; margin-top: .5rem; }
+  .full-bleed .highlights li:hover { color: #fff; border-bottom-color: var(--gold); }
   .full-bleed .highlights li.sel { color: var(--gold-light); }
   .full-bleed .highlights li.sel::before { content: '▸'; }
   .full-bleed section { max-width: 1200px; margin: 0 auto; }
@@ -676,11 +681,11 @@
         <h3 style="color:white;">Bangkok</h3>
         <p style="color:rgba(255,255,255,0.7);">Capitale bouillonnante et sensorielle, Bangkok est une ville qui ne dort jamais. Des ruelles étroites aux avenues XXL, des marchés flottants aux rooftop-bars, elle incarne le contraste fascinant de la Thaïlande contemporaine.</p>
         <ul class="highlights">
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%9E%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B9%84%E0%B8%AA%E0%B8%A2%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%8A%E0%B8%95%E0%B8%B8%E0%B8%9E%E0%B8%99.jpg/960px-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%9E%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B9%84%E0%B8%AA%E0%B8%A2%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%8A%E0%B8%95%E0%B8%B8%E0%B8%9E%E0%B8%99.jpg" data-label="Wat Pho · Grand Palais">Wat Pho & le Grand Palais</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Understanding_the_%22floating_market%22_%2815801439261%29.jpg/960px-Understanding_the_%22floating_market%22_%2815801439261%29.jpg" data-label="Damnoen Saduak">Marché flottant de Damnoen Saduak</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/%282022%29_%E0%B8%95%E0%B8%B6%E0%B8%81%E0%B9%81%E0%B8%96%E0%B8%A7%E0%B8%A3%E0%B8%B4%E0%B8%A1%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%A2%E0%B8%B2%E0%B8%A7%E0%B8%A3%E0%B8%B2%E0%B8%8A_%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C_%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3_%284%29.jpg/960px-%282022%29_%E0%B8%95%E0%B8%B6%E0%B8%81%E0%B9%81%E0%B8%96%E0%B8%A7%E0%B8%A3%E0%B8%B4%E0%B8%A1%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%A2%E0%B8%B2%E0%B8%A7%E0%B8%A3%E0%B8%B2%E0%B8%8A_%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C_%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3_%284%29.jpg" data-label="Yaowarat · Chinatown">Street food de Yaowarat (Chinatown)</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/2016_Bangkok%2C_Dystrykt_Phra_Nakhon%2C_Ulica_Khaosan_%2808%29.jpg/960px-2016_Bangkok%2C_Dystrykt_Phra_Nakhon%2C_Ulica_Khaosan_%2808%29.jpg" data-label="Khao San Road">Khao San Road & vie nocturne</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Main_House_of_Jim_Thompson_photo_Don_Ramey_Logan.jpg/960px-Main_House_of_Jim_Thompson_photo_Don_Ramey_Logan.jpg" data-label="Jim Thompson House">Jim Thompson House</li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%9E%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B9%84%E0%B8%AA%E0%B8%A2%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%8A%E0%B8%95%E0%B8%B8%E0%B8%9E%E0%B8%99.jpg/960px-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%9E%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B9%84%E0%B8%AA%E0%B8%A2%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%8A%E0%B8%95%E0%B8%B8%E0%B8%9E%E0%B8%99.jpg" data-label="Wat Pho · Grand Palais"><span class="li-head">Wat Pho &amp; le Grand Palais</span><span class="li-desc">Le plus ancien temple de Bangkok, abritant un Bouddha couché recouvert d'or de 46 mètres, voisin du somptueux Grand Palais royal.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Understanding_the_%22floating_market%22_%2815801439261%29.jpg/960px-Understanding_the_%22floating_market%22_%2815801439261%29.jpg" data-label="Damnoen Saduak"><span class="li-head">Marché flottant de Damnoen Saduak</span><span class="li-desc">Le marché flottant le plus célèbre du pays, où les marchandes vendent fruits et plats depuis leurs pirogues sur les canaux.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/%282022%29_%E0%B8%95%E0%B8%B6%E0%B8%81%E0%B9%81%E0%B8%96%E0%B8%A7%E0%B8%A3%E0%B8%B4%E0%B8%A1%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%A2%E0%B8%B2%E0%B8%A7%E0%B8%A3%E0%B8%B2%E0%B8%8A_%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C_%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3_%284%29.jpg/960px-%282022%29_%E0%B8%95%E0%B8%B6%E0%B8%81%E0%B9%81%E0%B8%96%E0%B8%A7%E0%B8%A3%E0%B8%B4%E0%B8%A1%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%A2%E0%B8%B2%E0%B8%A7%E0%B8%A3%E0%B8%B2%E0%B8%8A_%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C_%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3_%284%29.jpg" data-label="Yaowarat · Chinatown"><span class="li-head">Street food de Yaowarat (Chinatown)</span><span class="li-desc">Le quartier chinois de Bangkok, paradis de la cuisine de rue qui s'illumine de néons et d'enseignes dorées à la nuit tombée.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/2016_Bangkok%2C_Dystrykt_Phra_Nakhon%2C_Ulica_Khaosan_%2808%29.jpg/960px-2016_Bangkok%2C_Dystrykt_Phra_Nakhon%2C_Ulica_Khaosan_%2808%29.jpg" data-label="Khao San Road"><span class="li-head">Khao San Road &amp; vie nocturne</span><span class="li-desc">La rue mythique des routards, concentré de bars, d'échoppes et de vie nocturne au cœur du vieux Bangkok.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Main_House_of_Jim_Thompson_photo_Don_Ramey_Logan.jpg/960px-Main_House_of_Jim_Thompson_photo_Don_Ramey_Logan.jpg" data-label="Jim Thompson House"><span class="li-head">Jim Thompson House</span><span class="li-desc">L'élégante demeure en teck de l'Américain qui relança la soie thaïe, devenue musée au milieu d'un jardin tropical.</span></li>
         </ul>
       </div>
       <div class="region-visual" data-label="Bangkok · 10M habitants">
@@ -694,11 +699,11 @@
         <h3 style="color:white;">Le Nord</h3>
         <p style="color:rgba(255,255,255,0.7);">Terre de montagnes verdoyantes, de temples anciens et de cultures tribales, le nord offre une Thaïlande plus contemplative. Chiang Mai, capitale culturelle, est le point de départ idéal pour explorer la région dorée.</p>
         <ul class="highlights">
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/0020-%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%AA%E0%B8%B4%E0%B8%87%E0%B8%AB%E0%B9%8C%E0%B8%A7%E0%B8%A3%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3.jpg/960px-0020-%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%AA%E0%B8%B4%E0%B8%87%E0%B8%AB%E0%B9%8C%E0%B8%A7%E0%B8%A3%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3.jpg" data-label="Chiang Mai">Chiang Mai — temples et marchés de nuit</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Wat_Rong_Khun_-_Chiang_Rai.jpg/960px-Wat_Rong_Khun_-_Chiang_Rai.jpg" data-label="Chiang Rai · Triangle d'Or">Chiang Rai & le Triangle d'Or</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Pai_In_Colors_2009_%28128417933%29.jpeg/960px-Pai_In_Colors_2009_%28128417933%29.jpeg" data-label="Pai">Pai — la ville bohème de montagne</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/A_Karen_woman.jpg/960px-A_Karen_woman.jpg" data-label="Villages tribaux">Treks dans les villages tribaux</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Navann_was_born_at_the_park_Oct_2012.jpg/960px-Navann_was_born_at_the_park_Oct_2012.jpg" data-label="Sanctuaire d'éléphants">Sanctuaires d'éléphants éthiques</li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/0020-%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%AA%E0%B8%B4%E0%B8%87%E0%B8%AB%E0%B9%8C%E0%B8%A7%E0%B8%A3%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3.jpg/960px-0020-%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%AA%E0%B8%B4%E0%B8%87%E0%B8%AB%E0%B9%8C%E0%B8%A7%E0%B8%A3%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3.jpg" data-label="Chiang Mai"><span class="li-head">Chiang Mai — temples et marchés de nuit</span><span class="li-desc">Capitale culturelle du Nord, ceinte de remparts et ponctuée de centaines de temples, réputée pour ses marchés de nuit animés.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Wat_Rong_Khun_-_Chiang_Rai.jpg/960px-Wat_Rong_Khun_-_Chiang_Rai.jpg" data-label="Chiang Rai · Triangle d'Or"><span class="li-head">Chiang Rai &amp; le Triangle d'Or</span><span class="li-desc">Le saisissant Temple Blanc (Wat Rong Khun), œuvre d'art contemporaine immaculée, porte d'entrée vers le Triangle d'Or.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Pai_In_Colors_2009_%28128417933%29.jpeg/960px-Pai_In_Colors_2009_%28128417933%29.jpeg" data-label="Pai"><span class="li-head">Pai — la ville bohème de montagne</span><span class="li-desc">Petite ville nichée dans les montagnes, prisée pour ses cascades, ses sources chaudes et son ambiance décontractée.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/A_Karen_woman.jpg/960px-A_Karen_woman.jpg" data-label="Villages tribaux"><span class="li-head">Treks dans les villages tribaux</span><span class="li-desc">À la rencontre des peuples des montagnes (Karen, Akha, Lahu) au fil de randonnées à travers rizières et forêts.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Navann_was_born_at_the_park_Oct_2012.jpg/960px-Navann_was_born_at_the_park_Oct_2012.jpg" data-label="Sanctuaire d'éléphants"><span class="li-head">Sanctuaires d'éléphants éthiques</span><span class="li-desc">Des refuges responsables où l'on observe et nourrit les éléphants, sans jamais les monter ni les exploiter.</span></li>
         </ul>
       </div>
       <div class="region-visual" data-label="Chiang Mai · 1600m altitude max">
@@ -712,11 +717,11 @@
         <h3 style="color:white;">Sud — Golfe de Thaïlande</h3>
         <p style="color:rgba(255,255,255,0.7);">Koh Samui, Koh Phangan et Koh Tao composent le trio insulaire du golfe. Eaux turquoise, plages de sable blanc et vie sous-marine spectaculaire — le paradis balnéaire de carte postale.</p>
         <ul class="highlights">
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Koh_Samui_Lipa_Noi2.jpg/960px-Koh_Samui_Lipa_Noi2.jpg" data-label="Koh Samui">Koh Samui — plages & luxe tropical</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Full_Moon_Party_Ko_Pha_Ngan.jpg/960px-Full_Moon_Party_Ko_Pha_Ngan.jpg" data-label="Koh Phangan">Koh Phangan — Full Moon Party</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Ban_Mae_Haad_Ko_Tao.jpg/960px-Ban_Mae_Haad_Ko_Tao.jpg" data-label="Koh Tao · plongée">Koh Tao — paradis de la plongée</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Hua_Hin_hotels.jpg/960px-Hua_Hin_hotels.jpg" data-label="Hua Hin">Hua Hin — station balnéaire royale</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/1022_KhaoSokNationalPark_2.jpg/960px-1022_KhaoSokNationalPark_2.jpg" data-label="Khao Sok">Parc national de Khao Sok</li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Koh_Samui_Lipa_Noi2.jpg/960px-Koh_Samui_Lipa_Noi2.jpg" data-label="Koh Samui"><span class="li-head">Koh Samui — plages &amp; luxe tropical</span><span class="li-desc">Grande île du golfe au luxe tropical, bordée de plages de cocotiers et de complexes balnéaires haut de gamme.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Full_Moon_Party_Ko_Pha_Ngan.jpg/960px-Full_Moon_Party_Ko_Pha_Ngan.jpg" data-label="Koh Phangan"><span class="li-head">Koh Phangan — Full Moon Party</span><span class="li-desc">Célèbre pour sa Full Moon Party, gigantesque fête sur la plage de Haad Rin à chaque pleine lune.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Ban_Mae_Haad_Ko_Tao.jpg/960px-Ban_Mae_Haad_Ko_Tao.jpg" data-label="Koh Tao · plongée"><span class="li-head">Koh Tao — paradis de la plongée</span><span class="li-desc">Minuscule île devenue l'un des meilleurs spots de plongée au monde, idéale pour passer son brevet à petit prix.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Hua_Hin_hotels.jpg/960px-Hua_Hin_hotels.jpg" data-label="Hua Hin"><span class="li-head">Hua Hin — station balnéaire royale</span><span class="li-desc">Station balnéaire historique de la famille royale, mêlant longues plages, marchés de nuit et terrains de golf.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/1022_KhaoSokNationalPark_2.jpg/960px-1022_KhaoSokNationalPark_2.jpg" data-label="Khao Sok"><span class="li-head">Parc national de Khao Sok</span><span class="li-desc">Forêt pluviale parmi les plus anciennes du monde, avec son lac émeraude, ses falaises calcaires et ses maisons flottantes.</span></li>
         </ul>
       </div>
       <div class="region-visual" data-label="Golfe · 1500 km de côtes">
@@ -730,11 +735,11 @@
         <h3 style="color:white;">Sud — Mer d'Andaman</h3>
         <p style="color:rgba(255,255,255,0.7);">La mer d'Andaman, côté ouest, offre des paysages à couper le souffle : falaises karstiques plongeant dans une eau émeraude, grottes secrètes et plages sauvages. La région la plus photographiée du pays.</p>
         <ul class="highlights">
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Phuket_Aerial.jpg/960px-Phuket_Aerial.jpg" data-label="Phuket">Phuket — la reine des îles</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Railay_Beach_5.jpg/960px-Railay_Beach_5.jpg" data-label="Krabi">Krabi & les tours karstiques</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/KohPhiPhi.JPG/960px-KohPhiPhi.JPG" data-label="Koh Phi Phi">Koh Phi Phi — joyau translucide</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Ko_Lanta_Beach.jpg/960px-Ko_Lanta_Beach.jpg" data-label="Koh Lanta">Koh Lanta — ambiance posée</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Similan_Islands_Beach.jpg/960px-Similan_Islands_Beach.jpg" data-label="Îles Similan">Îles Similan — plongée mondiale</li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Phuket_Aerial.jpg/960px-Phuket_Aerial.jpg" data-label="Phuket"><span class="li-head">Phuket — la reine des îles</span><span class="li-desc">La plus grande île de Thaïlande, entre plages animées, vie nocturne et charmante vieille ville sino-portugaise.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Railay_Beach_5.jpg/960px-Railay_Beach_5.jpg" data-label="Krabi"><span class="li-head">Krabi &amp; les tours karstiques</span><span class="li-desc">Région de falaises calcaires plongeant dans la mer, dont la presqu'île de Railay, accessible seulement en bateau.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/KohPhiPhi.JPG/960px-KohPhiPhi.JPG" data-label="Koh Phi Phi"><span class="li-head">Koh Phi Phi — joyau translucide</span><span class="li-desc">Archipel aux eaux turquoise rendu célèbre par le film « La Plage », joyau de la mer d'Andaman.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Ko_Lanta_Beach.jpg/960px-Ko_Lanta_Beach.jpg" data-label="Koh Lanta"><span class="li-head">Koh Lanta — ambiance posée</span><span class="li-desc">Île plus paisible aux longues plages tranquilles, appréciée pour son atmosphère détendue et ses couchers de soleil.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Similan_Islands_Beach.jpg/960px-Similan_Islands_Beach.jpg" data-label="Îles Similan"><span class="li-head">Îles Similan — plongée mondiale</span><span class="li-desc">Parc marin protégé aux eaux cristallines, classé parmi les plus beaux sites de plongée de la planète.</span></li>
         </ul>
       </div>
       <div class="region-visual" data-label="Andaman · Classé parmi les plus belles mers">
@@ -748,11 +753,11 @@
         <h3 style="color:white;">L'Isaan</h3>
         <p style="color:rgba(255,255,255,0.7);">Le plateau du Nord-Est reste la région la plus authentique et la moins visitée. Terre agricole aux traditions khmères préservées, ses temples d'Angkor miniatures et sa cuisine pimentée en font une destination pour voyageurs curieux.</p>
         <ul class="highlights">
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Phimai_%28III%29.jpg/960px-Phimai_%28III%29.jpg" data-label="Phimai">Phimai — Angkor thaïlandais</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/%D0%93%D0%BE%D0%BB%D0%BE%D0%B2%D0%BD%D0%B0_%D0%B2%D0%B5%D0%B6%D0%B0_%D0%9F%D1%85%D0%B0%D0%BD%D0%BE%D0%BC%D1%80%D1%83%D0%BD%D0%B3.jpg/960px-%D0%93%D0%BE%D0%BB%D0%BE%D0%B2%D0%BD%D0%B0_%D0%B2%D0%B5%D0%B6%D0%B0_%D0%9F%D1%85%D0%B0%D0%BD%D0%BE%D0%BC%D1%80%D1%83%D0%BD%D0%B3.jpg" data-label="Phanom Rung">Parc historique de Phanom Rung</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Ubosot_Wat_Klang_Khon_Kaen.jpg/960px-Ubosot_Wat_Klang_Khon_Kaen.jpg" data-label="Khon Kaen">Khon Kaen — capitale régionale</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/1/16/Red_Lotus_Sea_at_Nong_Han_Kumphawapi%2C_Udon_Thani%2C_Thailand.jpg" data-label="Lac de lotus rose">Udon Thani & le lac de lotus rose</li>
-          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/2013_Tam_Lao.jpg/960px-2013_Tam_Lao.jpg" data-label="Som tam · Laab">Cuisine locale : som tam, laab</li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Phimai_%28III%29.jpg/960px-Phimai_%28III%29.jpg" data-label="Phimai"><span class="li-head">Phimai — Angkor thaïlandais</span><span class="li-desc">Le plus grand sanctuaire khmer de Thaïlande, souvent comparé à un Angkor miniature, daté du XIe siècle.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/%D0%93%D0%BE%D0%BB%D0%BE%D0%B2%D0%BD%D0%B0_%D0%B2%D0%B5%D0%B6%D0%B0_%D0%9F%D1%85%D0%B0%D0%BD%D0%BE%D0%BC%D1%80%D1%83%D0%BD%D0%B3.jpg/960px-%D0%93%D0%BE%D0%BB%D0%BE%D0%B2%D0%BD%D0%B0_%D0%B2%D0%B5%D0%B6%D0%B0_%D0%9F%D1%85%D0%B0%D0%BD%D0%BE%D0%BC%D1%80%D1%83%D0%BD%D0%B3.jpg" data-label="Phanom Rung"><span class="li-head">Parc historique de Phanom Rung</span><span class="li-desc">Temple khmer perché sur un volcan éteint, dont le sanctuaire s'aligne avec le soleil quelques jours par an.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Ubosot_Wat_Klang_Khon_Kaen.jpg/960px-Ubosot_Wat_Klang_Khon_Kaen.jpg" data-label="Khon Kaen"><span class="li-head">Khon Kaen — capitale régionale</span><span class="li-desc">Capitale dynamique de l'Isaan, vitrine de la culture du Nord-Est, de sa musique mor lam et de sa cuisine.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/1/16/Red_Lotus_Sea_at_Nong_Han_Kumphawapi%2C_Udon_Thani%2C_Thailand.jpg" data-label="Lac de lotus rose"><span class="li-head">Udon Thani &amp; le lac de lotus rose</span><span class="li-desc">Le « lac aux lotus rouges » de Kumphawapi se couvre de fleurs roses au lever du soleil, de décembre à février.</span></li>
+          <li data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/2013_Tam_Lao.jpg/960px-2013_Tam_Lao.jpg" data-label="Som tam · Laab"><span class="li-head">Cuisine locale : som tam, laab</span><span class="li-desc">La salade de papaye verte pilée et le laab (viande hachée épicée), emblèmes de la cuisine pimentée de l'Isaan.</span></li>
         </ul>
       </div>
       <div class="region-visual" data-label="Isaan · La Thaïlande authentique">
@@ -952,16 +957,18 @@
     li.setAttribute('role', 'button');
     li.setAttribute('tabindex', '0');
     const show = () => {
+      const alreadyOpen = li.classList.contains('sel');
+      li.parentNode.querySelectorAll('li').forEach(x => x.classList.remove('sel'));
+      if (alreadyOpen) return; // re-clic : on referme
       const visual = li.closest('.tab-content').querySelector('.region-visual');
       const img = visual.querySelector('img');
       const credit = visual.querySelector('.region-photo-credit');
       img.classList.remove('loaded');
       img.onload = () => img.classList.add('loaded');
       img.src = li.getAttribute('data-img');
-      img.alt = li.textContent.trim();
+      img.alt = (li.querySelector('.li-head') || li).textContent.trim();
       visual.setAttribute('data-label', li.getAttribute('data-label'));
       if (credit) credit.textContent = 'Wikimedia Commons';
-      li.parentNode.querySelectorAll('li').forEach(x => x.classList.remove('sel'));
       li.classList.add('sel');
     };
     li.addEventListener('click', show);
