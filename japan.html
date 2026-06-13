@@ -153,9 +153,26 @@
 
   @media (max-width: 768px) { .tab-content.active { grid-template-columns: 1fr; } .region-visual { height: 260px; position: static; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+
+  .collection-bar { position: absolute; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.1rem 1.6rem; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; }
+  .collection-bar a { text-decoration: none; }
+  .cb-brand { color: #fff; font-weight: 600; text-shadow: 0 1px 6px rgba(0,0,0,0.6); }
+  .cb-links a { color: rgba(255,255,255,0.72); margin-left: 1.25rem; text-shadow: 0 1px 6px rgba(0,0,0,0.6); transition: color 0.3s; }
+  .cb-links a:first-child { margin-left: 0; }
+  .cb-links a:hover, .cb-links a.current { color: #fff; }
+  .cb-links a.current { border-bottom: 2px solid currentColor; padding-bottom: 2px; }
 </style>
 </head>
 <body>
+
+<div class="collection-bar">
+  <a class="cb-brand" href="index.html">Le savoir est une arme</a>
+  <div class="cb-links">
+    <a href="thailand.html">Thaïlande</a>
+    <a href="japan.html" class="current">Japon</a>
+    <a href="ww1-interactive.html">1914–1918</a>
+  </div>
+</div>
 
 <div class="hero">
   <div class="hero-photo-bg">
