@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1914–1918 | La Grande Guerre</title>
+<meta name="description" content="La Première Guerre mondiale (1914-1918) : origines, chronologie, vie dans les tranchées, fronts et bilan humain, illustrés d'archives photographiques.">
+<meta property="og:title" content="1914–1918 — La Grande Guerre">
+<meta property="og:description" content="Origines, chronologie, tranchées, fronts et bilan humain du premier conflit mondial.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sepia: #c8a97e;
+    --dark: #1a1208;
+    --mud: #3d2b1a;
+    --blood: #8b1a1a;
+    --paper: #f0e6d0;
+    --ink: #2a1f0e;
+    --grey: #6b6457;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--paper);
+    font-family: 'Crimson Text', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* HERO */
+  #hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Cheshire_Regiment_trench_Somme_1916.jpg/1280px-Cheshire_Regiment_trench_Somme_1916.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    filter: grayscale(100%) brightness(0.25) sepia(40%);
+    transform: scale(1.05);
+    animation: slowZoom 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowZoom {
+    from { transform: scale(1.05); }
+    to { transform: scale(1.12); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 50% 80%, rgba(61,21,0,0.6) 0%, transparent 60%),
+      linear-gradient(to top, rgba(26,18,8,0.9) 0%, transparent 50%),
+      linear-gradient(to bottom, rgba(26,18,8,0.5) 0%, transparent 30%);
+  }
+
+  .hero-content { position: relative; z-index: 2; padding: 2rem; }
+
+  .hero-year {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(5rem, 15vw, 14rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--sepia);
+    opacity: 0;
+    animation: fadeSlide 1.2s ease forwards 0.3s;
+  }
+
+  .hero-dash {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    color: var(--blood);
+    line-height: 1;
+    opacity: 0;
+    animation: fadeSlide 1.2s ease forwards 0.6s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
+    font-style: italic;
+    color: var(--sepia);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: fadeSlide 1.2s ease forwards 0.9s;
+  }
+
+  .hero-sub {
+    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+    color: var(--grey);
+    margin-top: 1rem;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    animation: fadeSlide 1s ease forwards 1.2s;
+  }
+
+  .hero-photo-credit {
+    position: absolute;
+    bottom: 4rem;
+    right: 1.5rem;
+    font-size: 0.65rem;
+    color: rgba(200,169,126,0.4);
+    letter-spacing: 0.05em;
+    z-index: 2;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 2s;
+    color: var(--sepia);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 2;
+    transition: color 0.3s;
+  }
+
+  .scroll-hint:hover { color: var(--paper); }
+
+  .scroll-line {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--sepia), transparent);
+    animation: scrollPulse 1.5s ease-in-out infinite;
+  }
+
+  .scroll-arrow {
+    font-size: 1.2rem;
+    line-height: 1;
+    animation: bob 1.6s ease-in-out infinite;
+  }
+
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(26, 18, 8, 0.95);
+    border-bottom: 1px solid rgba(200, 169, 126, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 0.8rem 2rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    color: var(--grey);
+    text-decoration: none;
+    font-family: 'Crimson Text', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1px;
+    background: var(--sepia);
+    transition: width 0.3s;
+  }
+
+  nav a:hover { color: var(--sepia); }
+  nav a:hover::after { width: 100%; }
+
+  /* SECTIONS */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    border-bottom: 1px solid rgba(200, 169, 126, 0.15);
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--blood);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--blood);
+    opacity: 0.3;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--paper);
+    margin-bottom: 2rem;
+  }
+
+  h2 em { color: var(--sepia); font-style: italic; }
+
+  p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #c8b99a;
+    margin-bottom: 1.2rem;
+  }
+
+  /* ===== PHOTO STYLES ===== */
+
+  /* Album grid */
+  .photo-album {
+    margin: 3rem -1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem 1.5rem;
+    align-items: start;
+  }
+
+  /* Individual polaroid-style frame */
+  .photo-frame {
+    background: #e8dcc8;
+    padding: 10px 10px 44px;
+    box-shadow: 2px 4px 14px rgba(0,0,0,0.65), 0 0 0 1px rgba(0,0,0,0.15);
+    transform: rotate(var(--rot, 0deg));
+    transition: transform 0.35s ease, box-shadow 0.35s ease, z-index 0s;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+
+  .photo-frame:hover {
+    transform: rotate(0deg) scale(1.05) translateY(-8px);
+    box-shadow: 8px 16px 40px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,0,0,0.25);
+    z-index: 10;
+  }
+
+  /* Tape strip on some frames */
+  .photo-frame.taped::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(var(--tape-rot, -2deg));
+    width: 55px;
+    height: 18px;
+    background: rgba(200, 185, 130, 0.45);
+    border: 1px solid rgba(160, 140, 90, 0.25);
+  }
+
+  .photo-frame img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%) sepia(18%) contrast(1.08) brightness(0.92);
+  }
+
+  .photo-caption {
+    padding: 8px 4px 0;
+    font-family: 'Crimson Text', serif;
+    font-size: 0.78rem;
+    color: #3a2a1a;
+    font-style: italic;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .photo-source {
+    font-size: 0.62rem;
+    color: #9a8a7a;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* LIGHTBOX */
+  #lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.93);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    cursor: pointer;
+    animation: fadeIn 0.2s ease;
+  }
+
+  #lightbox.active { display: flex; }
+
+  #lightbox-inner {
+    max-width: 820px;
+    width: 100%;
+    background: #e8dcc8;
+    padding: 14px 14px 56px;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.9);
+    position: relative;
+    cursor: default;
+  }
+
+  #lightbox-img {
+    width: 100%;
+    max-height: 68vh;
+    object-fit: contain;
+    display: block;
+    filter: grayscale(100%) sepia(18%) contrast(1.08);
+  }
+
+  #lightbox-caption {
+    padding: 10px 6px 0;
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+    color: #3a2a1a;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  #lightbox-source {
+    font-size: 0.72rem;
+    color: #9a8a7a;
+    display: block;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  #lightbox-close {
+    position: absolute;
+    top: -16px; right: -16px;
+    width: 34px; height: 34px;
+    background: var(--blood);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Full-width photo band */
+  .photo-band {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+  }
+
+  .photo-band img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    filter: grayscale(100%) sepia(18%) brightness(0.45);
+  }
+
+  .photo-band-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.2rem 2rem;
+    background: linear-gradient(to top, rgba(26,18,8,0.95), transparent);
+    font-style: italic;
+    font-size: 0.83rem;
+    color: var(--sepia);
+    letter-spacing: 0.04em;
+  }
+
+  /* Two-column photo + text */
+  .photo-text-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    margin: 2rem 0;
+  }
+
+  .inline-frame {
+    background: #e8dcc8;
+    padding: 10px 10px 40px;
+    box-shadow: 3px 6px 20px rgba(0,0,0,0.5);
+    transform: rotate(var(--rot, -1deg));
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .inline-frame:hover {
+    transform: rotate(0deg) scale(1.02);
+    box-shadow: 6px 12px 30px rgba(0,0,0,0.7);
+  }
+
+  .inline-frame img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    filter: grayscale(100%) sepia(15%) contrast(1.1) brightness(0.9);
+    display: block;
+  }
+
+  .inline-caption {
+    padding: 8px 4px 0;
+    font-family: 'Crimson Text', serif;
+    font-size: 0.75rem;
+    color: #3a2a1a;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; margin-top: 2rem; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--sepia), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 1.5rem 0 1.5rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 50%;
+    transform: translateY(-50%);
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--sepia);
+    transition: all 0.3s;
+  }
+
+  .timeline-item:hover::before, .timeline-item.open::before {
+    background: var(--blood);
+    box-shadow: 0 0 12px var(--blood);
+    transform: translateY(-50%) scale(1.5);
+  }
+
+  .timeline-item:hover .tl-year { color: var(--blood); }
+
+  .tl-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--sepia);
+    transition: color 0.3s;
+  }
+
+  .tl-event { font-size: 1.1rem; color: var(--paper); margin: 0.3rem 0; font-weight: 600; }
+
+  .tl-desc {
+    font-size: 0.95rem;
+    color: var(--grey);
+    line-height: 1.6;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s;
+    opacity: 0;
+  }
+
+  .timeline-item.open .tl-desc { max-height: 300px; opacity: 1; }
+
+  /* STATS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .stat-card {
+    border: 1px solid rgba(200, 169, 126, 0.2);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at center, rgba(139,26,26,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .stat-card:hover { border-color: var(--sepia); transform: translateY(-4px); }
+  .stat-card:hover::before { opacity: 1; }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--sepia);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--grey);
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  /* QUOTE */
+  .quote-block {
+    border-left: 3px solid var(--blood);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    background: rgba(139, 26, 26, 0.05);
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: var(--paper);
+    position: relative;
+  }
+
+  .quote-block::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    color: var(--blood);
+    opacity: 0.2;
+    position: absolute;
+    top: -1.5rem; left: 1rem;
+    line-height: 1;
+  }
+
+  .quote-author {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--sepia);
+    margin-top: 1rem;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  /* FRONTS ACCORDION */
+  .front-list { margin-top: 2rem; }
+  .front-item { border-bottom: 1px solid rgba(200, 169, 126, 0.15); }
+
+  .front-header {
+    padding: 1.2rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--paper);
+    transition: color 0.3s;
+  }
+
+  .front-header:hover { color: var(--sepia); }
+  .front-icon { font-size: 1.5rem; color: var(--sepia); transition: transform 0.3s; }
+  .front-item.open .front-icon { transform: rotate(45deg); }
+
+  .front-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    font-size: 1.05rem;
+    color: #b0a08a;
+    line-height: 1.8;
+  }
+
+  .front-item.open .front-body { max-height: 600px; }
+  .front-body-inner { padding-bottom: 1.5rem; }
+
+  /* TRENCH INFO BOX */
+  .trench-visual {
+    background: linear-gradient(to bottom, #0a1a0a, #1a2a10, #2a1f0a, #1a0d00);
+    border: 1px solid rgba(200, 169, 126, 0.2);
+    padding: 3rem 2rem;
+    margin: 2rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .trench-visual::before {
+    content: '〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: rgba(200, 169, 126, 0.1);
+    letter-spacing: -0.5rem;
+    white-space: nowrap;
+  }
+
+  .trench-label { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--sepia); position: relative; z-index: 1; margin-bottom: 0.5rem; }
+  .trench-km { font-size: 4rem; font-weight: 900; font-family: 'Playfair Display', serif; color: var(--paper); position: relative; z-index: 1; line-height: 1; }
+  .trench-sub { color: var(--grey); position: relative; z-index: 1; font-size: 1rem; letter-spacing: 0.1em; margin-top: 0.5rem; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--grey);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    border-top: 1px solid rgba(200, 169, 126, 0.15);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeSlide { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 640px) {
+    .photo-text-pair { grid-template-columns: 1fr; }
+    .photo-album { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* Visibilité du focus clavier */
+  a:focus-visible, button:focus-visible,
+  [role="button"]:focus-visible {
+    outline: 2px solid var(--sepia);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Photographie agrandie" onclick="closeLightbox()">
+  <div id="lightbox-inner" onclick="event.stopPropagation()">
+    <button id="lightbox-close" onclick="closeLightbox()" aria-label="Fermer">✕</button>
+    <img id="lightbox-img" src="" alt="">
+    <div id="lightbox-caption"></div>
+    <span id="lightbox-source"></span>
+  </div>
+</div>
+
+<!-- HERO avec vraie photo de tranchée en fond -->
+<div id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-year">1914</div>
+    <div class="hero-dash">— 1918</div>
+    <div class="hero-title">La Grande Guerre</div>
+    <p class="hero-sub">Le premier conflit mondial — une tragédie sans précédent</p>
+  </div>
+  <div class="hero-photo-credit">Photo : Tranchée de la Somme, 1916 — IWM / Domaine public</div>
+  <a href="#origines" class="scroll-hint" aria-label="Faire défiler pour commencer">
+    <span>Faites défiler pour commencer</span>
+    <div class="scroll-line"></div>
+    <div class="scroll-arrow">↓</div>
+  </a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#origines">Origines</a>
+  <a href="#chronologie">Chronologie</a>
+  <a href="#tranchees">Tranchées</a>
+  <a href="#fronts">Fronts</a>
+  <a href="#bilan">Bilan</a>
+  <a href="#galerie">Galerie</a>
+</nav>
+
+<!-- ORIGINES -->
+<section id="origines">
+  <div class="section-label">Chapitre I</div>
+  <h2>Les origines <em>d'une catastrophe</em></h2>
+
+  <div class="photo-text-pair reveal">
+    <div class="inline-frame" style="--rot: -2deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Gavrilo Princip, auteur de l\'assassinat de l\'archiduc François-Ferdinand à Sarajevo le 28 juin 1914. Son geste mettra le feu aux poudres d\'une Europe sous tension.', 'Bundesarchiv / Wikimedia Commons – Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Bundesarchiv_Bild_183-S38324%2C_Gavrilo_Princip.jpg/440px-Bundesarchiv_Bild_183-S38324%2C_Gavrilo_Princip.jpg" alt="Gavrilo Princip">
+      <div class="inline-caption">Gavrilo Princip, Sarajevo, 1914<br><span style="color:#9a8a7a;font-size:0.62rem;">Bundesarchiv / Domaine public</span></div>
+    </div>
+    <div>
+      <p>Le 28 juin 1914, l'archiduc François-Ferdinand d'Autriche est assassiné à Sarajevo par Gavrilo Princip, un nationaliste bosniaque. L'étincelle met le feu à une Europe depuis longtemps sous tension.</p>
+      <p>Car derrière cet assassinat se cachent des décennies de rivalités coloniales, de course aux armements et de nationalismes exacerbés. Un système d'alliances complexe — la Triple Entente face aux Empires centraux — transforme un conflit régional en guerre mondiale en quelques semaines.</p>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="quote-block">
+      Les lampes s'éteignent partout en Europe ; nous ne les verrons plus se rallumer de notre vivant.
+      <div class="quote-author">— Sir Edward Grey, ministre britannique des Affaires étrangères, août 1914</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO BAND : Mobilisation -->
+<div class="photo-band reveal">
+  <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Bundesarchiv_Bild_146-2004-0080%2C_Erster_Weltkrieg%2C_Jubel_nach_Kriegserkl%C3%A4rung.jpg/1280px-Bundesarchiv_Bild_146-2004-0080%2C_Erster_Weltkrieg%2C_Jubel_nach_Kriegserkl%C3%A4rung.jpg" alt="Foule après déclaration de guerre 1914">
+  <div class="photo-band-caption">La foule acclame la déclaration de guerre à Munich, août 1914. Peu imaginaient ce qui les attendait. — Bundesarchiv / Domaine public</div>
+</div>
+
+<!-- CHRONOLOGIE -->
+<section id="chronologie">
+  <div class="section-label">Chapitre II</div>
+  <h2><em>Chronologie</em> des événements</h2>
+  <p class="reveal">Cliquez sur chaque événement pour en savoir plus.</p>
+
+  <div class="timeline reveal">
+    <div class="timeline-item" onclick="toggleTimeline(this)">
+      <div class="tl-year">1914</div>
+      <div class="tl-event">L'attentat et la mobilisation générale</div>
+      <div class="tl-desc">28 juin : assassinat de François-Ferdinand à Sarajevo. En quelques semaines, les grandes puissances européennes se mobilisent. Le 4 août, le Royaume-Uni entre en guerre. La "Guerre fraîche" promise pour Noël s'annonce déjà comme un enfer.</div>
+    </div>
+    <div class="timeline-item" onclick="toggleTimeline(this)">
+      <div class="tl-year">1915</div>
+      <div class="tl-event">L'enlisement — début de la guerre de tranchées</div>
+      <div class="tl-desc">Le front occidental se fige. Les tentatives de percée échouent les unes après les autres. Première utilisation massive des gaz de combat par l'Allemagne à Ypres. L'Italie rejoint l'Entente en mai.</div>
+    </div>
+    <div class="timeline-item" onclick="toggleTimeline(this)">
+      <div class="tl-year">1916</div>
+      <div class="tl-event">Verdun et la Somme — l'enfer industriel</div>
+      <div class="tl-desc">Bataille de Verdun (février–décembre) : plus de 700 000 morts et blessés pour quelques kilomètres. Bataille de la Somme : les Britanniques perdent 57 000 hommes le premier jour, 1er juillet. Les chars d'assaut font leur apparition.</div>
+    </div>
+    <div class="timeline-item" onclick="toggleTimeline(this)">
+      <div class="tl-year">1917</div>
+      <div class="tl-event">Les mutineries et les retournements</div>
+      <div class="tl-desc">L'épuisement provoque des mutineries dans l'armée française après l'échec du "Chemin des Dames". La Russie révolutionnaire signe un armistice séparé. Mais les États-Unis entrent en guerre en avril, changeant l'équilibre des forces.</div>
+    </div>
+    <div class="timeline-item" onclick="toggleTimeline(this)">
+      <div class="tl-year">1918</div>
+      <div class="tl-event">L'offensive finale et l'Armistice</div>
+      <div class="tl-desc">Les grandes offensives allemandes du printemps échouent. En août, la "Marche des Cent Jours" repousse les Allemands. Le 11 novembre à 11h, l'Armistice est signé dans la forêt de Compiègne. Le silence tombe sur l'Europe.</div>
+    </div>
+  </div>
+
+  <div class="photo-album reveal" style="margin-top: 3rem;">
+    <div class="photo-frame taped" style="--rot: -1.5deg; --tape-rot: -3deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Soldats britanniques dans la tranchée de la Somme, 1916 — battle de la Somme. Ce cliché illustre la guerre de tranchées à son apogée.', 'Imperial War Museum / Wikimedia Commons – Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Cheshire_Regiment_trench_Somme_1916.jpg/640px-Cheshire_Regiment_trench_Somme_1916.jpg" alt="Tranchée, Somme 1916">
+      <div class="photo-caption">Tranchée de la Somme, 1916<span class="photo-source">IWM / Domaine public</span></div>
+    </div>
+    <div class="photo-frame" style="--rot: 1.2deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Soldats français du 87e Régiment dans leurs tranchées à la cote 304, Verdun, 1916.', 'Wikimedia Commons – Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/French_soldiers_of_the_87th_Regiment_shelter_in_their_trenches_at_Hill_304_at_Verdun.jpg/640px-French_soldiers_of_the_87th_Regiment_shelter_in_their_trenches_at_Hill_304_at_Verdun.jpg" alt="Poilus à Verdun">
+      <div class="photo-caption">Poilus à Verdun, cote 304, 1916<span class="photo-source">Domaine public</span></div>
+    </div>
+    <div class="photo-frame taped" style="--rot: -0.8deg; --tape-rot: 4deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Hommes du King\'s Liverpool Regiment se déplaçant dans une tranchée de communication près de Blairville Wood, 16 avril 1916.', 'Imperial War Museum (Q524) / Wikimedia Commons – Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Men_of_the_King%27s_Liverpool_Regiment_moving_along_a_communication_trench_near_Blairville_Wood%2C_16th_April_1916._Q524.jpg/640px-Men_of_the_King%27s_Liverpool_Regiment_moving_along_a_communication_trench_near_Blairville_Wood%2C_16th_April_1916._Q524.jpg" alt="Soldats en tranchée 1916">
+      <div class="photo-caption">King's Liverpool Regt., 16 avril 1916<span class="photo-source">IWM Q524 / Domaine public</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANCHÉES -->
+<section id="tranchees">
+  <div class="section-label">Chapitre III</div>
+  <h2>La vie dans les <em>tranchées</em></h2>
+
+  <div class="reveal">
+    <div class="trench-visual">
+      <div class="trench-label">Front occidental</div>
+      <div class="trench-km">700 km</div>
+      <div class="trench-sub">de tranchées — de la mer du Nord à la Suisse</div>
+    </div>
+  </div>
+
+  <div class="photo-text-pair reveal" style="margin-top: 2rem;">
+    <div>
+      <p>Dans ces boyaux de boue et de terre, des millions d'hommes — les "poilus" — vivent, souffrent et meurent. La tranchée est un monde à part : obscure, humide, infestée de rats et de poux, constamment sous le feu de l'artillerie.</p>
+      <p>La routine du front alterne entre périodes de repos relatif et assauts meurtriers. Le bruit des obus, la puanteur des cadavres, le froid et la boue sont les compagnons permanents du soldat.</p>
+    </div>
+    <div class="inline-frame" style="--rot: 1.5deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Repas en première ligne dans une tranchée à La Synge Farm, France — à seulement 250 mètres des lignes ennemies.', 'National Library of Australia / Wikimedia Commons – Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Mealtime_in_the_front_line_trench%2C_within_250_yards_of_the_enemy%2C_La_Synge_Farm%2C_France_%2821697693871%29.jpg/640px-Mealtime_in_the_front_line_trench%2C_within_250_yards_of_the_enemy%2C_La_Synge_Farm%2C_France_%2821697693871%29.jpg" alt="Repas en tranchée">
+      <div class="inline-caption">Repas en première ligne, La Synge Farm<br><span style="color:#9a8a7a;font-size:0.62rem;">National Library of Australia / Domaine public</span></div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p>Derrière les tranchées, les femmes prennent en charge les usines et les fermes. Cette transformation sociale profonde ouvre la voie à l'émancipation des femmes dans l'après-guerre.</p>
+    <div class="quote-block">
+      On avançait courbés, dans un boyau étroit, les pieds dans l'eau, le dos chargé du paquetage… et on pensait à rien, qu'à survivre jusqu'au soir.
+      <div class="quote-author">— Témoignage anonyme d'un poilu</div>
+    </div>
+  </div>
+
+  <div class="photo-album reveal">
+    <div class="photo-frame" style="--rot: 2deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Tranchée britannique pendant la bataille de Cambrai, avec un char d\'assaut en arrière-plan — première utilisation massive des chars dans l\'histoire.', 'GWPDA / Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/WWITrenchCambrai.jpg/640px-WWITrenchCambrai.jpg" alt="Tranchée et char, Cambrai">
+      <div class="photo-caption">Bataille de Cambrai — char en arrière<span class="photo-source">GWPDA / Domaine public</span></div>
+    </div>
+    <div class="photo-frame taped" style="--rot: -1deg; --tape-rot: 2deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Poste de tir avec mitrailleuse Lewis en tranchée de première ligne, prêt à ouvrir le feu.', 'Australian War Memorial / Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Front_trench%2C_showing_the_Lewis_gun_ready_to_deal_with_Boche_%284688598972%29.jpg/640px-Front_trench%2C_showing_the_Lewis_gun_ready_to_deal_with_Boche_%284688598972%29.jpg" alt="Lewis gun en tranchée">
+      <div class="photo-caption">Mitrailleuse Lewis en première ligne<span class="photo-source">AWM / Domaine public</span></div>
+    </div>
+    <div class="photo-frame" style="--rot: -2.2deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Tranchée de communication canadienne. Ces corridors reliaient les lignes arrière aux premières lignes.', 'Bibliothèque et Archives Canada / Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Canadian_trench_%2814742414460%29.jpg/480px-Canadian_trench_%2814742414460%29.jpg" alt="Tranchée canadienne">
+      <div class="photo-caption">Tranchée de communication canadienne<span class="photo-source">BAC / Domaine public</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO BAND : No Man's Land -->
+<div class="photo-band reveal">
+  <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/WorldWarINomansLandStereo1.jpg/1280px-WorldWarINomansLandStereo1.jpg" alt="No Man's Land near Lens France">
+  <div class="photo-band-caption">Le "No Man's Land" près de Lens, France — la terre dévastée entre les deux lignes de tranchées, interdite à tous. — Domaine public</div>
+</div>
+
+<!-- FRONTS -->
+<section id="fronts">
+  <div class="section-label">Chapitre IV</div>
+  <h2>Les <em>différents fronts</em></h2>
+  <p class="reveal">La guerre ne se limite pas au front occidental. Elle embrase le monde entier. Cliquez pour explorer chaque front.</p>
+  <div class="front-list reveal">
+    <div class="front-item">
+      <div class="front-header" onclick="toggleFront(this)">
+        <span>🇫🇷 Front Occidental — France & Belgique</span>
+        <span class="front-icon">+</span>
+      </div>
+      <div class="front-body">
+        <div class="front-body-inner">
+          Le théâtre principal de la guerre. De la mer du Nord jusqu'à la frontière suisse, des tranchées s'étirent sur 700 km. C'est ici que se déroulent les batailles les plus meurtrières : Verdun, la Somme, Ypres. La guerre de position y domine pendant plus de 3 ans.
+          <div style="margin-top:1.2rem;">
+            <div class="inline-frame" style="--rot:1deg; max-width:300px;" onclick="openLightbox(this.querySelector('img'), 'Le Président Poincaré et le Maréchal Joffre visitent le front lors de la bataille de la Somme, 1916.', 'Domaine public')">
+              <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/WWIPoincareJoffre.jpg/640px-WWIPoincareJoffre.jpg" alt="Poincaré et Joffre à la Somme">
+              <div class="inline-caption">Poincaré & Joffre à la Somme, 1916</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="front-item">
+      <div class="front-header" onclick="toggleFront(this)">
+        <span>🇷🇺 Front Oriental — Russie & Autriche</span>
+        <span class="front-icon">+</span>
+      </div>
+      <div class="front-body">
+        <div class="front-body-inner">Contrairement au front occidental, le front oriental est plus mobile. Les armées russes, mal équipées, subissent de lourdes pertes. La révolution de 1917 provoque l'effondrement de la Russie tsariste et la signature du traité de Brest-Litovsk en 1918, libérant des divisions allemandes pour l'ouest.</div>
+      </div>
+    </div>
+    <div class="front-item">
+      <div class="front-header" onclick="toggleFront(this)">
+        <span>🌊 Front Maritime — Guerre sous-marine</span>
+        <span class="front-icon">+</span>
+      </div>
+      <div class="front-body">
+        <div class="front-body-inner">L'Allemagne utilise ses sous-marins (U-Boot) pour bloquer les approvisionnements britanniques. La guerre sous-marine à outrance, déclenchée en 1917, provoque le naufrage de navires civils et est l'une des causes de l'entrée en guerre des États-Unis, après le torpillage du Lusitania en 1915.</div>
+      </div>
+    </div>
+    <div class="front-item">
+      <div class="front-header" onclick="toggleFront(this)">
+        <span>🌍 Fronts d'Orient & Afrique</span>
+        <span class="front-icon">+</span>
+      </div>
+      <div class="front-body">
+        <div class="front-body-inner">Les colonies africaines et asiatiques sont aussi touchées. Les troupes coloniales — tirailleurs sénégalais, soldats indiens — combattent sur tous les fronts. En Orient, la campagne des Dardanelles (1915) est un désastre pour les Alliés. Lawrence d'Arabie soutient la révolte arabe contre l'Empire ottoman.</div>
+      </div>
+    </div>
+    <div class="front-item">
+      <div class="front-header" onclick="toggleFront(this)">
+        <span>🇮🇹 Front Italien — Alpes & Isonzo</span>
+        <span class="front-icon">+</span>
+      </div>
+      <div class="front-body">
+        <div class="front-body-inner">L'Italie, d'abord neutre, rejoint l'Entente en 1915 contre des promesses de territoires. Onze batailles de l'Isonzo s'enchaînent sans décision. La défaite de Caporetto (1917) est une catastrophe — mais le front tient, et l'Autriche capitule en novembre 1918.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BILAN -->
+<section id="bilan">
+  <div class="section-label">Épilogue</div>
+  <h2>Le <em>bilan</em> humain</h2>
+  <div class="reveal">
+    <p>Quand les canons se taisent le 11 novembre 1918, l'Europe découvre l'étendue du désastre. Une génération entière a été sacrifiée sur les champs de bataille. Les chiffres donnent le vertige.</p>
+  </div>
+  <div class="stats-grid reveal">
+    <div class="stat-card">
+      <span class="stat-number" data-target="10">0</span><span class="stat-number">M</span>
+      <span class="stat-label">Soldats tués</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number" data-target="21">0</span><span class="stat-number">M</span>
+      <span class="stat-label">Blessés militaires</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number" data-target="7">0</span><span class="stat-number">M</span>
+      <span class="stat-label">Civils tués</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number" data-target="50">0</span><span class="stat-number">M</span>
+      <span class="stat-label">Morts de la grippe espagnole</span>
+    </div>
+  </div>
+
+  <div class="photo-text-pair reveal" style="margin-top: 3rem;">
+    <div class="inline-frame" style="--rot: -1.5deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Soldats britanniques aveuglés par les gaz lacrymogènes lors de la bataille d\'Estaires, 1918, attendant des soins médicaux à Béthune, France.', 'Wikimedia Commons – Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Blind_veterans_WWI.jpg/640px-Blind_veterans_WWI.jpg" alt="Soldats aveuglés gaz 1918">
+      <div class="inline-caption">Blessés des gaz, Béthune, 1918<br><span style="color:#9a8a7a;font-size:0.62rem;">Domaine public</span></div>
+    </div>
+    <div>
+      <p>Le Traité de Versailles (1919) impose à l'Allemagne des réparations colossales et lui attribue la responsabilité exclusive de la guerre. Cette paix humiliante, jugée trop sévère par beaucoup d'historiens, portera en germe les conditions qui mèneront à la Seconde Guerre mondiale vingt ans plus tard.</p>
+      <p>Les "gueules cassées" — soldats défigurés — et les mutilés de guerre rappellent à la société de l'après-guerre le prix payé. Le monument aux morts devient le symbole du deuil collectif dans chaque village de France.</p>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="quote-block">
+      Ce n'est pas une paix, c'est un armistice pour vingt ans.
+      <div class="quote-author">— Maréchal Ferdinand Foch, 1919</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE D'ARCHIVES -->
+<section id="galerie">
+  <div class="section-label">Archives photographiques</div>
+  <h2><em>Galerie</em> — Images du front</h2>
+  <p class="reveal">Ces photographies ont été prises entre 1914 et 1918. Toutes sont dans le domaine public. Cliquez pour agrandir.</p>
+
+  <div class="photo-album reveal">
+    <div class="photo-frame taped" style="--rot: -2deg; --tape-rot: -4deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Vue aérienne d\'un réseau de tranchées — ces systèmes complexes s\'étiraient sur des centaines de kilomètres.', 'Fortepan / Wikimedia Commons – Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Aerial_photo%2C_First_World_War%2C_trench%2C_bird%27s_eye_view_Fortepan_31771.jpg/640px-Aerial_photo%2C_First_World_War%2C_trench%2C_bird%27s_eye_view_Fortepan_31771.jpg" alt="Vue aérienne tranchées">
+      <div class="photo-caption">Vue aérienne du réseau de tranchées<span class="photo-source">Fortepan / Domaine public</span></div>
+    </div>
+
+    <div class="photo-frame" style="--rot: 1.5deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Armée britannique sur le front occidental, 1914–1918. Soldats en position dans une tranchée.', 'Imperial War Museum (Q527) / Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/British_Army_on_the_Western_Front%2C_1914-1918._Q527.jpg/640px-British_Army_on_the_Western_Front%2C_1914-1918._Q527.jpg" alt="Armée britannique front occidental">
+      <div class="photo-caption">Front occidental, armée britannique<span class="photo-source">IWM Q527 / Domaine public</span></div>
+    </div>
+
+    <div class="photo-frame taped" style="--rot: -1deg; --tape-rot: 3deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Un moment de calme dans une tranchée allemande. Entre les bombardements, les soldats des deux camps attendaient, dormaient, écrivaient à leurs familles.', 'Library of Congress / Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/A_quiet_moment_in_German_trenches_LCCN2004679613.jpg/640px-A_quiet_moment_in_German_trenches_LCCN2004679613.jpg" alt="Tranchée allemande moment calme">
+      <div class="photo-caption">Un moment calme, tranchée allemande<span class="photo-source">Library of Congress / Domaine public</span></div>
+    </div>
+
+    <div class="photo-frame" style="--rot: 2.1deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Tranchée de première ligne, France. Vue intérieure d\'un boyau de combat.', 'Library of Congress / Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/France_-_in_a_front_line_trench_LOC_17426279322.jpg/640px-France_-_in_a_front_line_trench_LOC_17426279322.jpg" alt="Tranchée France première ligne">
+      <div class="photo-caption">Tranchée de première ligne, France<span class="photo-source">Library of Congress / Domaine public</span></div>
+    </div>
+
+    <div class="photo-frame taped" style="--rot: -1.8deg; --tape-rot: -2deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Tranchée et char d\'assaut britannique pendant la bataille de Cambrai — novembre 1917, première utilisation massive des blindés.', 'GWPDA / Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/WWITrenchCambrai.jpg/640px-WWITrenchCambrai.jpg" alt="Tranchée Cambrai char">
+      <div class="photo-caption">Char d'assaut, bataille de Cambrai, 1917<span class="photo-source">GWPDA / Domaine public</span></div>
+    </div>
+
+    <div class="photo-frame" style="--rot: 1.2deg;"
+      onclick="openLightbox(this.querySelector('img'), 'Officiers français inspectant un cratère de mine en 1915. Ces explosions géantes creusaient des trous de plusieurs dizaines de mètres.', 'Wikimedia Commons – Domaine public')">
+      <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/French_officers_inspecting_mine_crater_1915.jpg/640px-French_officers_inspecting_mine_crater_1915.jpg" alt="Officiers et cratère de mine 1915">
+      <div class="photo-caption">Officiers inspectant un cratère de mine, 1915<span class="photo-source">Domaine public</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>1914 — 1918 · La Grande Guerre · « Ils ne passeront pas »</p>
+  <p style="margin-top: 0.5rem; opacity: 0.5;">In memoriam — à tous ceux qui ne sont pas revenus</p>
+  <p style="margin-top: 0.8rem; opacity: 0.3; font-size: 0.72rem;">Toutes les photographies proviennent de Wikimedia Commons et sont dans le domaine public.</p>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Timeline toggle
+  function toggleTimeline(el) {
+    el.classList.toggle('open');
+    el.setAttribute('aria-expanded', el.classList.contains('open'));
+  }
+
+  // Front accordion
+  function toggleFront(headerEl) {
+    const item = headerEl.parentElement;
+    item.classList.toggle('open');
+    headerEl.setAttribute('aria-expanded', item.classList.contains('open'));
+  }
+
+  // Rendre les éléments cliquables (div) opérables au clavier
+  function makeKeyboardOperable(selector, expandable) {
+    document.querySelectorAll(selector).forEach(el => {
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
+      if (expandable) el.setAttribute('aria-expanded', el.classList.contains('open'));
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+      });
+    });
+  }
+  makeKeyboardOperable('.timeline-item', true);
+  makeKeyboardOperable('.front-header', true);
+  makeKeyboardOperable('.photo-frame', false);
+  makeKeyboardOperable('.inline-frame', false);
+
+  // Counter animation
+  const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        let current = 0;
+        const step = target / 40;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = Math.floor(current);
+        }, 40);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  statNumbers.forEach(el => counterObserver.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Lightbox
+  let lastFocused = null;
+  function openLightbox(imgEl, caption, source) {
+    lastFocused = document.activeElement;
+    document.getElementById('lightbox-img').src = imgEl.src;
+    document.getElementById('lightbox-img').alt = imgEl.alt;
+    document.getElementById('lightbox-caption').textContent = caption;
+    document.getElementById('lightbox-source').textContent = source;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lightbox-close').focus();
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+    if (lastFocused) { lastFocused.focus(); lastFocused = null; }
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>

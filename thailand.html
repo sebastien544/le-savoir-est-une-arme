@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thaïlande — Royaume de l'Or</title>
+<meta name="description" content="Guide de voyage interactif sur la Thaïlande : régions, cuisine, saisons et informations pratiques pour préparer son séjour.">
+<meta property="og:title" content="Thaïlande — Le Royaume du Sourire">
+<meta property="og:description" content="Guide de voyage interactif : régions, cuisine, saisons et conseils pratiques.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Sarabun:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C8963E;
+    --gold-light: #E8B96A;
+    --gold-pale: #F5E6C4;
+    --red: #9B2335;
+    --deep: #1A0F05;
+    --text: #2C1A0A;
+    --bg: #FBF5E8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    background: linear-gradient(160deg, #1A0F05 0%, #3D1F08 40%, #7A3A10 70%, #C8963E 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8963E' fill-opacity='0.07'%3E%3Cpath d='M30 0L60 30L30 60L0 30z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: drift 30s linear infinite;
+  }
+
+  @keyframes drift { from { transform: translateX(0) translateY(0); } to { transform: translateX(60px) translateY(60px); } }
+
+  .thai-flag {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    height: 80px;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    animation: fadeUp 1s ease both;
+  }
+  .flag-stripe { flex: 1; }
+  .flag-red { background: var(--red); }
+  .flag-white { background: white; }
+  .flag-blue { background: #2D4F91; flex: 2; }
+
+  .hero-eyebrow {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 200;
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    animation: fadeUp 1s 0.2s ease both;
+    opacity: 0;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    line-height: 0.9;
+    animation: fadeUp 1s 0.4s ease both;
+    opacity: 0;
+  }
+
+  .hero-title em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--gold-pale);
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    animation: fadeUp 1s 0.6s ease both;
+    opacity: 0;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gold-light);
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    animation: fadeUp 1s 1s ease both;
+    opacity: 0;
+    transition: color 0.3s;
+  }
+
+  .scroll-cue:hover { color: white; }
+
+  .scroll-line {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--gold-light), transparent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .scroll-arrow {
+    font-size: 1.2rem;
+    line-height: 1;
+    animation: bob 1.6s ease-in-out infinite;
+  }
+
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+  @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(26,15,5,0.95);
+    backdrop-filter: blur(8px);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    border-bottom: 1px solid rgba(200,150,62,0.3);
+  }
+
+  nav a {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+
+  nav a:hover { color: var(--gold); }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: var(--deep);
+  }
+
+  .section-title em { color: var(--gold); font-style: italic; }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ESSENTIALS GRID */
+  .essentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid rgba(200,150,62,0.2);
+    padding: 2rem;
+    border-radius: 2px;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--gold);
+    transition: height 0.4s ease;
+  }
+
+  .card:hover::before { height: 100%; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(200,150,62,0.15); border-color: var(--gold); }
+
+  .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 400; }
+  .card p { font-size: 0.9rem; line-height: 1.7; color: #5C4A3A; font-weight: 300; }
+
+  /* REGIONS TABS */
+  .tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid rgba(200,150,62,0.3);
+    margin-bottom: 2.5rem;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8A7060;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .tab-btn:hover { color: var(--gold); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; animation: fadeIn 0.4s ease; }
+
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .region-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; margin-bottom: 1rem; }
+  .region-text p { font-size: 0.95rem; line-height: 1.9; color: #5C4A3A; font-weight: 300; margin-bottom: 1rem; }
+
+  .highlights { list-style: none; margin-top: 1.5rem; }
+  .highlights li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(200,150,62,0.15);
+    font-size: 0.9rem;
+    color: #5C4A3A;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .highlights li::before { content: '—'; color: var(--gold); font-weight: 300; }
+
+  .region-visual {
+    border-radius: 2px;
+    min-height: 340px;
+    position: relative;
+    overflow: hidden;
+    background: #1A0F05;
+  }
+
+  .region-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s ease, opacity 0.4s ease;
+    opacity: 0;
+  }
+
+  .region-visual img.loaded { opacity: 1; }
+  .region-visual:hover img { transform: scale(1.06); }
+
+  .region-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,15,5,0.85) 0%, rgba(26,15,5,0.1) 60%);
+    z-index: 1;
+  }
+
+  .region-visual::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(200,150,62,0.9);
+    z-index: 2;
+  }
+
+  .region-photo-credit {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1rem;
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.3);
+    z-index: 2;
+    letter-spacing: 0.05em;
+  }
+
+  /* DISH CARDS with photos */
+  .dish-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+    border-radius: 2px;
+    cursor: default;
+    background: linear-gradient(135deg, #3D1F08, #1A0F05);
+  }
+
+  .dish-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, opacity 0.4s;
+    opacity: 0;
+  }
+
+  .dish-photo.loaded { opacity: 1; }
+  .dish-card:hover .dish-photo { transform: scale(1.08); }
+
+  .dish-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,5,0,0.95) 0%, rgba(10,5,0,0.4) 50%, rgba(10,5,0,0.1) 100%);
+    z-index: 1;
+  }
+
+  .dish-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    z-index: 2;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .dish-card:hover .dish-content { transform: translateY(-4px); }
+
+  /* HERO photo background */
+  .hero > .hero-photo-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-photo-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+
+  .hero-photo-bg img.loaded { opacity: 0.25; }
+
+  .hero > * { z-index: 1; position: relative; }
+
+  /* CUISINE */
+  .cuisine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .dish-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 0.3rem; color: var(--gold); }
+  .dish-card .origin { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 0.6rem; }
+  .dish-card p { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.65); font-weight: 300; }
+
+  /* PHOTO STRIP */
+  .photo-strip {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 6px;
+    margin-top: 3rem;
+    height: 280px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .photo-strip-item {
+    position: relative;
+    overflow: hidden;
+    background: #1A0F05;
+  }
+
+  .photo-strip-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.5s ease;
+  }
+
+  .photo-strip-item img.loaded { opacity: 1; }
+  .photo-strip-item:hover img { transform: scale(1.07); }
+
+  .photo-strip-item .strip-label {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    background: rgba(0,0,0,0.4);
+    padding: 0.2rem 0.5rem;
+    border-radius: 1px;
+    backdrop-filter: blur(4px);
+  }
+
+  @media (max-width: 600px) {
+    .photo-strip { grid-template-columns: 1fr 1fr; height: 200px; }
+    .photo-strip-item:last-child { display: none; }
+  }
+  .pratique-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1px;
+    background: rgba(200,150,62,0.2);
+    border: 1px solid rgba(200,150,62,0.2);
+    margin-top: 3rem;
+  }
+
+  .pratique-item {
+    background: var(--bg);
+    padding: 2rem;
+  }
+
+  .pratique-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 0.75rem; color: var(--deep); }
+  .pratique-item p { font-size: 0.88rem; line-height: 1.7; color: #5C4A3A; font-weight: 300; }
+
+  /* SAISONS interactive */
+  .saisons-bar {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 4px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .mois {
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem 0.25rem;
+    text-align: center;
+    transition: all 0.3s;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .mois.saison-sec { background: #E8C46A; color: #3D1F08; }
+  .mois.saison-chaud { background: #D45B3A; color: white; }
+  .mois.saison-pluie { background: #3A7AB8; color: white; }
+  .mois.active { transform: scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+
+  .saison-info {
+    background: var(--deep);
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    min-height: 80px;
+    transition: all 0.3s;
+  }
+
+  .saison-info strong { color: var(--gold); }
+
+  .legende {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .legende-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: #5C4A3A; }
+  .legende-dot { width: 12px; height: 12px; border-radius: 2px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: white; margin-bottom: 0.5rem; }
+  footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); letter-spacing: 0.2em; }
+
+  /* separators */
+  .full-bleed { background: linear-gradient(135deg, #1A0F05 0%, #3D1F08 100%); padding: 5rem 2rem; }
+  .full-bleed .section-title { color: white; }
+  .full-bleed section { max-width: 1200px; margin: 0 auto; }
+
+  @media (max-width: 768px) {
+    .tab-content.active { grid-template-columns: 1fr; }
+    .region-visual { min-height: 200px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-photo-bg">
+    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80&auto=format&fit=crop" alt="Thaïlande" fetchpriority="high" decoding="async" onload="this.classList.add('loaded')">
+  </div>
+  <div class="thai-flag">
+    <div class="flag-stripe flag-red"></div>
+    <div class="flag-stripe flag-white"></div>
+    <div class="flag-stripe flag-blue"></div>
+    <div class="flag-stripe flag-white"></div>
+    <div class="flag-stripe flag-red"></div>
+  </div>
+  <p class="hero-eyebrow">Guide de voyage interactif</p>
+  <h1 class="hero-title">Thaï<em>lande</em></h1>
+  <p class="hero-subtitle">ราชอาณาจักรไทย — Le Royaume du Sourire</p>
+  <a href="#essentials" class="scroll-cue" aria-label="Faire défiler pour découvrir le guide">
+    Faites défiler pour explorer
+    <div class="scroll-line"></div>
+    <div class="scroll-arrow">↓</div>
+  </a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#essentials">Essentiels</a>
+  <a href="#regions">Régions</a>
+  <a href="#cuisine">Cuisine</a>
+  <a href="#saisons">Saisons</a>
+  <a href="#pratique">Pratique</a>
+</nav>
+
+<!-- ESSENTIALS -->
+<div id="essentials">
+  <section>
+    <p class="section-label">01 — En bref</p>
+    <h2 class="section-title">Un pays aux <em>mille visages</em></h2>
+    <div class="divider"></div>
+    <p style="font-size:1.05rem;line-height:1.9;color:#5C4A3A;max-width:680px;font-weight:300;">
+      Située au cœur de l'Asie du Sud-Est, la Thaïlande est une mosaïque envoûtante de temples dorés, de plages immaculées, de jungle luxuriante et d'une culture millénaire. Avec près de 70 millions d'habitants et Bangkok comme capitale bouillonnante, le pays offre une expérience inoubliable à chaque visiteur.
+    </p>
+
+    <div class="photo-strip">
+      <div class="photo-strip-item">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=800&q=80&auto=format&fit=crop" alt="Temple Thaïlande" onload="this.classList.add('loaded')">
+        <span class="strip-label">Temples</span>
+      </div>
+      <div class="photo-strip-item">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=500&q=80&auto=format&fit=crop" alt="Plage Thaïlande" onload="this.classList.add('loaded')">
+        <span class="strip-label">Plages</span>
+      </div>
+      <div class="photo-strip-item">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=500&q=80&auto=format&fit=crop" alt="Forêt Nord Thaïlande" onload="this.classList.add('loaded')">
+        <span class="strip-label">Nature</span>
+      </div>
+    </div>
+    <div class="essentials-grid">
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <h3>Capitale</h3>
+        <p>Bangkok (Krung Thep) — 10 millions d'habitants. Mégalopole vibrante mêlant gratte-ciel ultramodernes et temples bouddhistes centenaires.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗣️</div>
+        <h3>Langue</h3>
+        <p>Le thaï, langue tonale à écriture propre. L'anglais est largement compris dans les zones touristiques. Apprendre « Sawadee Kha/Khrap » (bonjour) fera des merveilles.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💴</div>
+        <h3>Monnaie</h3>
+        <p>Le baht thaïlandais (THB). 1 EUR ≈ 38 THB. Un pays abordable : repas de rue à 40–80 THB, tuk-tuk à négocier.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🙏</div>
+        <h3>Religion</h3>
+        <p>Bouddhisme theravāda à 95 %. Les temples (wats) sont omniprésents et sacrés. Tenue respectueuse obligatoire : épaules et genoux couverts.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Électricité</h3>
+        <p>220V / 50 Hz. Prises de type A, B et C. Les adaptateurs sont faciles à trouver sur place pour quelques bahts.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🕐</div>
+        <h3>Décalage horaire</h3>
+        <p>UTC+7. En France : +5h en hiver, +6h en été. Bangkok s'éveille quand Paris s'endort.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- REGIONS -->
+<div class="full-bleed" id="regions">
+  <section>
+    <p class="section-label" style="color:var(--gold-light);">02 — Géographie</p>
+    <h2 class="section-title">Explorer les <em>régions</em></h2>
+    <div class="divider"></div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('bangkok', this)">Bangkok</button>
+      <button class="tab-btn" onclick="showTab('nord', this)">Nord</button>
+      <button class="tab-btn" onclick="showTab('sud-golfe', this)">Sud — Golfe</button>
+      <button class="tab-btn" onclick="showTab('sud-andaman', this)">Sud — Andaman</button>
+      <button class="tab-btn" onclick="showTab('isaan', this)">Isaan</button>
+    </div>
+
+    <div id="tab-bangkok" class="tab-content active">
+      <div class="region-text">
+        <h3 style="color:white;">Bangkok</h3>
+        <p style="color:rgba(255,255,255,0.7);">Capitale bouillonnante et sensorielle, Bangkok est une ville qui ne dort jamais. Des ruelles étroites aux avenues XXL, des marchés flottants aux rooftop-bars, elle incarne le contraste fascinant de la Thaïlande contemporaine.</p>
+        <ul class="highlights" style="color:rgba(255,255,255,0.6);">
+          <li style="border-color:rgba(200,150,62,0.2);">Wat Pho & le Grand Palais</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Marché flottant de Damnoen Saduak</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Street food de Yaowarat (Chinatown)</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Khao San Road & vie nocturne</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Jim Thompson House</li>
+        </ul>
+      </div>
+      <div class="region-visual" data-label="Bangkok · 10M habitants">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=800&q=80&auto=format&fit=crop" alt="Bangkok" onload="this.classList.add('loaded')">
+        <span class="region-photo-credit">Unsplash</span>
+      </div>
+    </div>
+
+    <div id="tab-nord" class="tab-content">
+      <div class="region-text">
+        <h3 style="color:white;">Le Nord</h3>
+        <p style="color:rgba(255,255,255,0.7);">Terre de montagnes verdoyantes, de temples anciens et de cultures tribales, le nord offre une Thaïlande plus contemplative. Chiang Mai, capitale culturelle, est le point de départ idéal pour explorer la région dorée.</p>
+        <ul class="highlights" style="color:rgba(255,255,255,0.6);">
+          <li style="border-color:rgba(200,150,62,0.2);">Chiang Mai — temples et marchés de nuit</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Chiang Rai & le Triangle d'Or</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Pai — la ville bohème de montagne</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Treks dans les villages tribaux</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Sanctuaires d'éléphants éthiques</li>
+        </ul>
+      </div>
+      <div class="region-visual" data-label="Chiang Mai · 1600m altitude max">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80&auto=format&fit=crop" alt="Chiang Mai Nord Thaïlande" onload="this.classList.add('loaded')">
+        <span class="region-photo-credit">Unsplash</span>
+      </div>
+    </div>
+
+    <div id="tab-sud-golfe" class="tab-content">
+      <div class="region-text">
+        <h3 style="color:white;">Sud — Golfe de Thaïlande</h3>
+        <p style="color:rgba(255,255,255,0.7);">Koh Samui, Koh Phangan et Koh Tao composent le trio insulaire du golfe. Eaux turquoise, plages de sable blanc et vie sous-marine spectaculaire — le paradis balnéaire de carte postale.</p>
+        <ul class="highlights" style="color:rgba(255,255,255,0.6);">
+          <li style="border-color:rgba(200,150,62,0.2);">Koh Samui — plages & luxe tropical</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Koh Phangan — Full Moon Party</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Koh Tao — paradis de la plongée</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Hua Hin — station balnéaire royale</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Parc national de Khao Sok</li>
+        </ul>
+      </div>
+      <div class="region-visual" data-label="Golfe · 1500 km de côtes">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1537956965359-7573183d1f57?w=800&q=80&auto=format&fit=crop" alt="Koh Samui Golfe de Thaïlande" onload="this.classList.add('loaded')">
+        <span class="region-photo-credit">Unsplash</span>
+      </div>
+    </div>
+
+    <div id="tab-sud-andaman" class="tab-content">
+      <div class="region-text">
+        <h3 style="color:white;">Sud — Mer d'Andaman</h3>
+        <p style="color:rgba(255,255,255,0.7);">La mer d'Andaman, côté ouest, offre des paysages à couper le souffle : falaises karstiques plongeant dans une eau émeraude, grottes secrètes et plages sauvages. La région la plus photographiée du pays.</p>
+        <ul class="highlights" style="color:rgba(255,255,255,0.6);">
+          <li style="border-color:rgba(200,150,62,0.2);">Phuket — la reine des îles</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Krabi & les tours karstiques</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Koh Phi Phi — joyau translucide</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Koh Lanta — ambiance posée</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Îles Similan — plongée mondiale</li>
+        </ul>
+      </div>
+      <div class="region-visual" data-label="Andaman · Classé parmi les plus belles mers">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80&auto=format&fit=crop" alt="Krabi Andaman Thaïlande" onload="this.classList.add('loaded')">
+        <span class="region-photo-credit">Unsplash</span>
+      </div>
+    </div>
+
+    <div id="tab-isaan" class="tab-content">
+      <div class="region-text">
+        <h3 style="color:white;">L'Isaan</h3>
+        <p style="color:rgba(255,255,255,0.7);">Le plateau du Nord-Est reste la région la plus authentique et la moins visitée. Terre agricole aux traditions khmères préservées, ses temples d'Angkor miniatures et sa cuisine pimentée en font une destination pour voyageurs curieux.</p>
+        <ul class="highlights" style="color:rgba(255,255,255,0.6);">
+          <li style="border-color:rgba(200,150,62,0.2);">Phimai — Angkor thaïlandais</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Parc historique de Phanom Rung</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Khon Kaen — capitale régionale</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Udon Thani & le lac de lotus rose</li>
+          <li style="border-color:rgba(200,150,62,0.2);">Cuisine locale : som tam, laab</li>
+        </ul>
+      </div>
+      <div class="region-visual" data-label="Isaan · La Thaïlande authentique">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=800&q=80&auto=format&fit=crop" alt="Temple Thaïlande Isaan" onload="this.classList.add('loaded')">
+        <span class="region-photo-credit">Unsplash</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CUISINE -->
+<div id="cuisine">
+  <section>
+    <p class="section-label">03 — Gastronomie</p>
+    <h2 class="section-title">La cuisine <em>thaïe</em></h2>
+    <div class="divider"></div>
+    <p style="font-size:1.05rem;line-height:1.9;color:#5C4A3A;max-width:680px;font-weight:300;">
+      Une symphonie de saveurs en équilibre parfait : sucré, salé, acide, amer et umami. La cuisine thaïe est parmi les plus célébrées au monde, accessible à tous les budgets — du chariot de street food à 50 bahts au restaurant étoilé.
+    </p>
+    <div class="cuisine-grid">
+      <div class="dish-card">
+        <img loading="lazy" decoding="async" class="dish-photo" src="https://images.unsplash.com/photo-1559314809-0d155014e29e?w=600&q=80&auto=format&fit=crop" alt="Pad Thai" onload="this.classList.add('loaded')">
+        <div class="dish-overlay"></div>
+        <div class="dish-content">
+          <h4>Pad Thaï</h4>
+          <div class="origin">Plat national</div>
+          <p>Nouilles de riz sautées, crevettes, tofu, germes de soja et cacahuètes. Simple, équilibré, irrésistible.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img loading="lazy" decoding="async" class="dish-photo" src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&q=80&auto=format&fit=crop" alt="Tom Yum" onload="this.classList.add('loaded')">
+        <div class="dish-overlay"></div>
+        <div class="dish-content">
+          <h4>Tom Yum Goong</h4>
+          <div class="origin">Soupe emblématique</div>
+          <p>Soupe épicée et acidulée aux crevettes, citronnelle, galanga et feuilles de kaffir. Un bouillon qui réveille.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img loading="lazy" decoding="async" class="dish-photo" src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&q=80&auto=format&fit=crop" alt="Green Curry" onload="this.classList.add('loaded')">
+        <div class="dish-overlay"></div>
+        <div class="dish-content">
+          <h4>Green Curry</h4>
+          <div class="origin">Curry thaï</div>
+          <p>Pâte de curry verte au lait de coco, aubergines, basilic thaï. Parfumé et crémeux, le plus doux des curries.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img loading="lazy" decoding="async" class="dish-photo" src="https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=600&q=80&auto=format&fit=crop" alt="Som Tam" onload="this.classList.add('loaded')">
+        <div class="dish-overlay"></div>
+        <div class="dish-content">
+          <h4>Som Tam</h4>
+          <div class="origin">Isaan</div>
+          <p>Salade de papaye verte pilée, piment, sauce poisson, citron vert. Frais, pimenté, addictif — la star de l'Isaan.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img loading="lazy" decoding="async" class="dish-photo" src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80&auto=format&fit=crop" alt="Brochettes" onload="this.classList.add('loaded')">
+        <div class="dish-overlay"></div>
+        <div class="dish-content">
+          <h4>Moo Ping</h4>
+          <div class="origin">Street food</div>
+          <p>Brochettes de porc mariné grillées au charbon. Le petit-déjeuner de rue des Thaïlandais, servi avec du riz gluant.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img loading="lazy" decoding="async" class="dish-photo" src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&q=80&auto=format&fit=crop" alt="Massaman Curry" onload="this.classList.add('loaded')">
+        <div class="dish-overlay"></div>
+        <div class="dish-content">
+          <h4>Massaman Curry</h4>
+          <div class="origin">Influence persane</div>
+          <p>Curry doux aux influences moyen-orientales : cardamome, cannelle, cacahuètes. Classé parmi les meilleurs plats du monde.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img loading="lazy" decoding="async" class="dish-photo" src="https://images.unsplash.com/photo-1621236378699-8597faf6a176?w=600&q=80&auto=format&fit=crop" alt="Mango Sticky Rice" onload="this.classList.add('loaded')">
+        <div class="dish-overlay"></div>
+        <div class="dish-content">
+          <h4>Mango Sticky Rice</h4>
+          <div class="origin">Dessert royal</div>
+          <p>Riz gluant au lait de coco servi avec mangue fraîche. Simple et parfait, le dessert thaï par excellence.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img loading="lazy" decoding="async" class="dish-photo" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&q=80&auto=format&fit=crop" alt="Thai Iced Tea" onload="this.classList.add('loaded')">
+        <div class="dish-overlay"></div>
+        <div class="dish-content">
+          <h4>Thai Iced Tea</h4>
+          <div class="origin">Boisson nationale</div>
+          <p>Thé fort brassé avec du lait condensé sucré sur glace. Orange, sucré, étonnamment addictif sous la chaleur.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SAISONS -->
+<div id="saisons" style="background:white;padding:1px 0;">
+  <section>
+    <p class="section-label">04 — Météo</p>
+    <h2 class="section-title">Quand <em>partir</em> ?</h2>
+    <div class="divider"></div>
+    <p style="font-size:1rem;line-height:1.9;color:#5C4A3A;max-width:680px;font-weight:300;margin-bottom:2rem;">
+      La Thaïlande connaît trois saisons distinctes. Cliquez sur un mois pour en savoir plus sur les conditions.
+    </p>
+
+    <div class="saisons-bar">
+      <div class="mois saison-sec active" onclick="showMois(this,'jan')">Jan</div>
+      <div class="mois saison-chaud" onclick="showMois(this,'fev')">Fév</div>
+      <div class="mois saison-chaud" onclick="showMois(this,'mar')">Mar</div>
+      <div class="mois saison-chaud" onclick="showMois(this,'avr')">Avr</div>
+      <div class="mois saison-pluie" onclick="showMois(this,'mai')">Mai</div>
+      <div class="mois saison-pluie" onclick="showMois(this,'jun')">Juin</div>
+      <div class="mois saison-pluie" onclick="showMois(this,'jul')">Juil</div>
+      <div class="mois saison-pluie" onclick="showMois(this,'aou')">Août</div>
+      <div class="mois saison-pluie" onclick="showMois(this,'sep')">Sep</div>
+      <div class="mois saison-pluie" onclick="showMois(this,'oct')">Oct</div>
+      <div class="mois saison-sec" onclick="showMois(this,'nov')">Nov</div>
+      <div class="mois saison-sec" onclick="showMois(this,'dec')">Déc</div>
+    </div>
+
+    <div class="saison-info" id="saison-info">
+      <strong>Janvier — Saison fraîche et sèche ✨ Idéal</strong><br>
+      La meilleure période pour visiter. Températures agréables (25–30°C), ciel dégagé, humidité basse. C'est la haute saison touristique — réservez à l'avance.
+    </div>
+
+    <div class="legende">
+      <div class="legende-item"><div class="legende-dot" style="background:#E8C46A;"></div> Saison fraîche et sèche (idéal)</div>
+      <div class="legende-item"><div class="legende-dot" style="background:#D45B3A;"></div> Saison chaude (35°C+)</div>
+      <div class="legende-item"><div class="legende-dot" style="background:#3A7AB8;"></div> Saison des pluies (luxuriante)</div>
+    </div>
+  </section>
+</div>
+
+<!-- PRATIQUE -->
+<div id="pratique" style="background:var(--bg);">
+  <section>
+    <p class="section-label">05 — Informations pratiques</p>
+    <h2 class="section-title">Avant de <em>partir</em></h2>
+    <div class="divider"></div>
+    <div class="pratique-grid">
+      <div class="pratique-item">
+        <h4>🛂 Visa</h4>
+        <p>Les ressortissants français bénéficient d'une exemption de visa pour des séjours jusqu'à 60 jours (depuis 2024). Passeport valable 6 mois minimum requis.</p>
+      </div>
+      <div class="pratique-item">
+        <h4>💉 Santé</h4>
+        <p>Vaccins conseillés : Hépatites A & B, typhoïde, tétanos. Prophylaxie antipaludéenne selon les régions. Crème solaire et DEET indispensables.</p>
+      </div>
+      <div class="pratique-item">
+        <h4>🚌 Transports</h4>
+        <p>Tuk-tuks, songthaews, taxis avec compteur (exigez-le !), BTS Skytrain à Bangkok, bus longue distance et ferries pour les îles.</p>
+      </div>
+      <div class="pratique-item">
+        <h4>🏨 Hébergement</h4>
+        <p>Du dortoir à 200 THB aux résorts 5 étoiles. Les guesthouses thaïes offrent souvent un excellent rapport qualité-prix. Réservez en haute saison.</p>
+      </div>
+      <div class="pratique-item">
+        <h4>🙏 Étiquette</h4>
+        <p>Ne jamais toucher la tête de quelqu'un. Ne jamais pointer du pied. Respecter les images du Roi. Sourire — toujours sourire.</p>
+      </div>
+      <div class="pratique-item">
+        <h4>📱 Connectivité</h4>
+        <p>SIM locale chez AIS, DTAC ou True Move disponible à l'aéroport. 30 jours de data illimitée pour environ 300 THB. Excellent réseau 4G partout.</p>
+      </div>
+      <div class="pratique-item">
+        <h4>🌶️ Cuisine</h4>
+        <p>Précisez « mai phet » (pas épicé) si nécessaire. L'eau du robinet n'est pas potable — buvez de l'eau en bouteille ou utilisez un filtre.</p>
+      </div>
+      <div class="pratique-item">
+        <h4>🏖️ Sécurité</h4>
+        <p>Pays globalement sûr pour les touristes. Méfiez-vous des arnaques aux gemmes, des tuk-tuks proposant des tours « gratuits » et protégez vos affaires sur les plages.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-title">สวัสดี — Sawadee</div>
+  <p>« Dans le pays du sourire, chaque rencontre est une invitation »</p>
+  <br>
+  <p style="font-size:0.65rem;opacity:0.3;">Guide interactif · Thaïlande © 2026</p>
+</footer>
+
+<script>
+  function showTab(name, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+  }
+
+  // Accessibilité : onglets + mois opérables au clavier
+  document.querySelectorAll('.tab-btn').forEach(b =>
+    b.setAttribute('aria-selected', b.classList.contains('active') ? 'true' : 'false'));
+
+  document.querySelectorAll('.mois').forEach(m => {
+    m.setAttribute('role', 'button');
+    m.setAttribute('tabindex', '0');
+    m.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); m.click(); }
+    });
+  });
+
+  const saisonData = {
+    jan: { label: 'Janvier — Saison fraîche et sèche ✨ Idéal', text: 'La meilleure période pour visiter. Températures agréables (25–30°C), ciel dégagé, humidité basse. C\'est la haute saison touristique — réservez à l\'avance.' },
+    nov: { label: 'Novembre — Début de la saison sèche ✨ Excellent', text: 'Les pluies se retirent, la végétation est verdoyante et fraîche. Températures parfaites (27–32°C). Excellent choix, notamment pour le nord.' },
+    dec: { label: 'Décembre — Pleine saison fraîche ✨ Idéal', text: 'Temps superbe dans tout le pays. Températures douces, nuits fraîches au nord. Haute saison, prix élevés mais expérience optimale.' },
+    fev: { label: 'Février — Saison chaude qui commence 🌡️ Bon', text: 'Encore agréable mais la chaleur monte. Excellente période pour les îles du golfe et du sud. Évitez le centre des villes aux heures de pointe.' },
+    mar: { label: 'Mars — Chaleur intense 🌡️ Chaud', text: 'Températures grimpant à 35–38°C. Humidité en hausse. Idéal pour les plages ventilées, moins pour les visites de temples en plein soleil.' },
+    avr: { label: 'Avril — Pic de chaleur + Songkran 🎉 Festival', text: 'Le mois le plus chaud (40°C+). Mais c\'est aussi Songkran, le Nouvel An thaï et ses batailles d\'eau épiques (13-15 avril). Expérience inoubliable !' },
+    mai: { label: 'Mai — Début des pluies 🌧️ Transition', text: 'Les premières pluies rafraîchissent l\'air. Pluies surtout l\'après-midi. Beaucoup moins de touristes, prix en baisse, paysages verdoyants.' },
+    jun: { label: 'Juin — Saison des pluies 🌧️ Budget', text: 'Pluies régulières mais rarement toute la journée. Mer d\'Andaman agitée (Phuket déconseillé). Le golfe reste accessible.' },
+    jul: { label: 'Juillet — Mousson active 🌧️ Budget', text: 'Mousson du sud-ouest. Côte d\'Andaman (Phuket) difficile. Côté golfe (Koh Samui) encore correct. Bangkok et le nord restent visitables.' },
+    aou: { label: 'Août — Mousson continue 🌧️ Budget', text: 'Similaire à juillet. Les temples et la culture sont accessibles partout. Grosse ambiance à Bangkok — la ville est plus vivante sans les touristes.' },
+    sep: { label: 'Septembre — Mois le plus pluvieux ⛈️ Déconseillé', text: 'Le mois le plus humide de l\'année. Certaines îles (Koh Samui) ont leur propre saison des pluies décalée — vérifiez par région.' },
+    oct: { label: 'Octobre — Fin des pluies 🌦️ Transition', text: 'Les pluies diminuent progressivement. Koh Samui reçoit ses pluies les plus importantes en novembre. La lumière pour la photo est extraordinaire.' }
+  };
+
+  function showMois(el, key) {
+    document.querySelectorAll('.mois').forEach(m => m.classList.remove('active'));
+    el.classList.add('active');
+    const d = saisonData[key];
+    const info = document.getElementById('saison-info');
+    info.style.opacity = 0;
+    setTimeout(() => {
+      info.innerHTML = '<strong>' + d.label + '</strong><br>' + d.text;
+      info.style.opacity = 1;
+    }, 200);
+    info.style.transition = 'opacity 0.2s';
+  }
+
+  // Intersection observer for animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.style.animation = 'fadeUp 0.6s ease both';
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card, .dish-card, .pratique-item').forEach(el => {
+    el.style.opacity = 0;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
