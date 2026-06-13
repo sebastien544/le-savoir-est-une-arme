@@ -583,6 +583,28 @@
     }
   }
 
+  /* ITINÉRAIRES */
+  .itin-toggle { display: flex; gap: .6rem; margin: 0 0 2rem; flex-wrap: wrap; }
+  .itin-btn { padding: .6rem 1.4rem; border: 1px solid rgba(200,150,62,0.4); background: none; cursor: pointer; font-family: 'Sarabun', sans-serif; font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: #8A7060; border-radius: 2px; transition: all .3s; }
+  .itin-btn.active { background: var(--gold); color: #fff; border-color: var(--gold); }
+  .itin-btn:hover { color: var(--gold); }
+  .itin-btn.active:hover { color: #fff; }
+  .itin { display: none; }
+  .itin.active { display: block; animation: fadeIn .4s ease; }
+  .day { display: flex; gap: 1.4rem; padding: 1.1rem 0; border-bottom: 1px solid rgba(200,150,62,0.18); }
+  .day:last-child { border-bottom: none; }
+  .day-num { flex-shrink: 0; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--gold); line-height: 1.2; min-width: 3.4rem; }
+  .day-body h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: .3rem; color: var(--deep); }
+  .day-body p { font-size: .9rem; line-height: 1.7; color: #5C4A3A; font-weight: 300; }
+
+  /* LEXIQUE */
+  .lexique-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; margin-top: 3rem; }
+  .lex { border: 1px solid rgba(200,150,62,0.2); border-radius: 2px; padding: 1.2rem 1.4rem; background: white; transition: border-color .3s, transform .3s; }
+  .lex:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .lex .local { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--gold); }
+  .lex .pron { font-size: .7rem; letter-spacing: .03em; color: #8A7060; font-style: italic; margin-top: .15rem; }
+  .lex .fr { font-size: .82rem; color: #5C4A3A; margin-top: .5rem; }
+
   /* barre de collection (partagée) */
   .collection-bar { position: absolute; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.1rem 1.6rem; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; }
   .collection-bar a { text-decoration: none; }
@@ -630,8 +652,10 @@
 <nav>
   <a href="#essentials">Essentiels</a>
   <a href="#regions">Régions</a>
+  <a href="#itineraires">Itinéraires</a>
   <a href="#cuisine">Cuisine</a>
   <a href="#saisons">Saisons</a>
+  <a href="#lexique">Lexique</a>
   <a href="#pratique">Pratique</a>
 </nav>
 
@@ -811,6 +835,45 @@
   </section>
 </div>
 
+<!-- ITINÉRAIRES -->
+<div id="itineraires" style="background:var(--bg);">
+  <section class="itin-wrap">
+    <p class="section-label">Itinéraires sur mesure</p>
+    <h2 class="section-title">Combien de <em>jours</em> ?</h2>
+    <div class="divider"></div>
+    <p style="font-size:1rem;line-height:1.9;color:#5C4A3A;max-width:680px;font-weight:300;margin-bottom:2rem;">
+      Deux itinéraires clés en main selon le temps dont vous disposez.
+    </p>
+    <div class="itin-toggle">
+      <button class="itin-btn active" onclick="showItin('itin7', this)">7 jours · l'essentiel</button>
+      <button class="itin-btn" onclick="showItin('itin14', this)">14 jours · en profondeur</button>
+    </div>
+    <div class="itin active" id="itin7">
+      <div class="day"><div class="day-num">J1</div><div class="day-body"><h4>Bangkok, l'effervescence</h4><p>Grand Palais, Wat Pho et son Bouddha couché, traversée du fleuve vers Wat Arun, puis street food sur Yaowarat (Chinatown).</p></div></div>
+      <div class="day"><div class="day-num">J2</div><div class="day-body"><h4>Marchés &amp; canaux</h4><p>Lever tôt pour le marché ferroviaire de Maeklong et le marché flottant de Damnoen Saduak, retour pour un coucher de soleil en rooftop-bar.</p></div></div>
+      <div class="day"><div class="day-num">J3</div><div class="day-body"><h4>Cap au nord</h4><p>Vol pour Chiang Mai ; flânerie dans la vieille ville fortifiée, ses temples et le marché de nuit.</p></div></div>
+      <div class="day"><div class="day-num">J4</div><div class="day-body"><h4>Chiang Mai nature</h4><p>Matinée dans un sanctuaire d'éléphants éthique, fin de journée au temple Doi Suthep dominant la ville.</p></div></div>
+      <div class="day"><div class="day-num">J5</div><div class="day-body"><h4>Vers le sud</h4><p>Vol pour Krabi ou Phuket ; installation en bord de mer et premier bain.</p></div></div>
+      <div class="day"><div class="day-num">J6</div><div class="day-body"><h4>Îles &amp; lagons</h4><p>Excursion en longtail boat (Phi Phi, Railay ou les Hong), masque et tuba dans une eau émeraude.</p></div></div>
+      <div class="day"><div class="day-num">J7</div><div class="day-body"><h4>Détente &amp; départ</h4><p>Matinée plage, massage thaï, vol retour.</p></div></div>
+    </div>
+    <div class="itin" id="itin14">
+      <div class="day"><div class="day-num">J1·2</div><div class="day-body"><h4>Bangkok</h4><p>Palais, temples, marchés et street food, sans se presser.</p></div></div>
+      <div class="day"><div class="day-num">J3</div><div class="day-body"><h4>Ayutthaya</h4><p>Excursion dans l'ancienne capitale et ses temples en ruine, classés à l'UNESCO.</p></div></div>
+      <div class="day"><div class="day-num">J4</div><div class="day-body"><h4>Chiang Mai</h4><p>Vol vers le nord, vieille ville et marché de nuit.</p></div></div>
+      <div class="day"><div class="day-num">J5</div><div class="day-body"><h4>Culture du Nord</h4><p>Cours de cuisine thaïe et matinée dans un sanctuaire d'éléphants.</p></div></div>
+      <div class="day"><div class="day-num">J6</div><div class="day-body"><h4>Chiang Rai</h4><p>Temple Blanc, Temple Bleu et porte du Triangle d'Or.</p></div></div>
+      <div class="day"><div class="day-num">J7</div><div class="day-body"><h4>Pai</h4><p>Route de montagne vers ce village bohème : cascades et sources chaudes.</p></div></div>
+      <div class="day"><div class="day-num">J8</div><div class="day-body"><h4>Transfert sud</h4><p>Retour à Chiang Mai puis vol vers la mer d'Andaman.</p></div></div>
+      <div class="day"><div class="day-num">J9·10</div><div class="day-body"><h4>Krabi</h4><p>Railay, escalade ou farniente, excursions dans les îles voisines.</p></div></div>
+      <div class="day"><div class="day-num">J11</div><div class="day-body"><h4>Koh Phi Phi</h4><p>Baie de Maya, snorkeling et couchers de soleil.</p></div></div>
+      <div class="day"><div class="day-num">J12</div><div class="day-body"><h4>Koh Lanta</h4><p>Île plus paisible, longues plages et ambiance posée.</p></div></div>
+      <div class="day"><div class="day-num">J13</div><div class="day-body"><h4>Détente</h4><p>Plongée, spa ou simple hamac.</p></div></div>
+      <div class="day"><div class="day-num">J14</div><div class="day-body"><h4>Départ</h4><p>Transfert et vol retour.</p></div></div>
+    </div>
+  </section>
+</div>
+
 <!-- CUISINE -->
 <div id="cuisine">
   <section>
@@ -931,6 +994,28 @@
       <div class="legende-item"><div class="legende-dot" style="background:#E8C46A;"></div> Saison fraîche et sèche (idéal)</div>
       <div class="legende-item"><div class="legende-dot" style="background:#D45B3A;"></div> Saison chaude (35°C+)</div>
       <div class="legende-item"><div class="legende-dot" style="background:#3A7AB8;"></div> Saison des pluies (luxuriante)</div>
+    </div>
+  </section>
+</div>
+
+<!-- LEXIQUE -->
+<div id="lexique" style="background:white;padding:1px 0;">
+  <section>
+    <p class="section-label">Lexique de survie</p>
+    <h2 class="section-title">Quelques <em>mots</em> de thaï</h2>
+    <div class="divider"></div>
+    <p style="font-size:1rem;line-height:1.9;color:#5C4A3A;max-width:680px;font-weight:300;">
+      Quelques mots qui ouvrent bien des portes — et des sourires. Les hommes terminent par « khrap », les femmes par « kha ».
+    </p>
+    <div class="lexique-grid">
+      <div class="lex"><div class="local">Sawatdee</div><div class="pron">sa-wat-dii khrap/kha</div><div class="fr">Bonjour</div></div>
+      <div class="lex"><div class="local">Khop khun</div><div class="pron">kop-koun</div><div class="fr">Merci</div></div>
+      <div class="lex"><div class="local">Chai / Mai chai</div><div class="pron">tchaï / maï tchaï</div><div class="fr">Oui / Non</div></div>
+      <div class="lex"><div class="local">Thao rai ?</div><div class="pron">tao-raï</div><div class="fr">Combien ?</div></div>
+      <div class="lex"><div class="local">Aroi</div><div class="pron">a-roï</div><div class="fr">C'est délicieux</div></div>
+      <div class="lex"><div class="local">Mai phet</div><div class="pron">maï pèt</div><div class="fr">Pas épicé</div></div>
+      <div class="lex"><div class="local">Khor thot</div><div class="pron">kor-tot</div><div class="fr">Excusez-moi / pardon</div></div>
+      <div class="lex"><div class="local">La kon</div><div class="pron">laa-kon</div><div class="fr">Au revoir</div></div>
     </div>
   </section>
 </div>
@@ -1065,6 +1150,15 @@
       info.style.opacity = 1;
     }, 200);
     info.style.transition = 'opacity 0.2s';
+  }
+
+  // Itinéraires : bascule 7 / 14 jours
+  function showItin(id, btn) {
+    const wrap = btn.closest('.itin-wrap');
+    wrap.querySelectorAll('.itin').forEach(x => x.classList.remove('active'));
+    wrap.querySelectorAll('.itin-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
   }
 
   // Intersection observer for animations

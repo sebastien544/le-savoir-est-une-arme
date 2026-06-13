@@ -400,6 +400,27 @@ TEMPLATE = r'''<!DOCTYPE html>
   @media (max-width: 768px) { .tab-content.active { grid-template-columns: 1fr; } .region-visual { height: 260px; position: static; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 
+  /* ITINÉRAIRES */
+  .itin-toggle { display: flex; gap: .6rem; margin: 0 0 2rem; flex-wrap: wrap; }
+  .itin-btn { padding: .6rem 1.4rem; border: 1px solid rgba(188,0,45,0.4); background: none; cursor: pointer; font-family: 'Sarabun', sans-serif; font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: #9aa0b0; border-radius: 2px; transition: all .3s; }
+  .itin-btn.active { background: var(--red); color: #fff; border-color: var(--red); }
+  .itin-btn:hover { color: var(--red); }
+  .itin-btn.active:hover { color: #fff; }
+  .itin { display: none; }
+  .itin.active { display: block; animation: fadeIn .4s ease; }
+  .day { display: flex; gap: 1.4rem; padding: 1.1rem 0; border-bottom: 1px solid rgba(188,0,45,0.15); }
+  .day:last-child { border-bottom: none; }
+  .day-num { flex-shrink: 0; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--red); line-height: 1.2; min-width: 3.4rem; }
+  .day-body h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: .3rem; color: var(--deep); }
+  .day-body p { font-size: .9rem; line-height: 1.7; color: #555a66; font-weight: 300; }
+  /* LEXIQUE */
+  .lexique-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; margin-top: 3rem; }
+  .lex { border: 1px solid rgba(188,0,45,0.18); border-radius: 2px; padding: 1.2rem 1.4rem; background: white; transition: border-color .3s, transform .3s; }
+  .lex:hover { border-color: var(--red); transform: translateY(-3px); }
+  .lex .local { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--red); }
+  .lex .pron { font-size: .7rem; letter-spacing: .03em; color: #9aa0b0; font-style: italic; margin-top: .15rem; }
+  .lex .fr { font-size: .82rem; color: #555a66; margin-top: .5rem; }
+
   .collection-bar { position: absolute; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.1rem 1.6rem; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; }
   .collection-bar a { text-decoration: none; }
   .cb-brand { color: #fff; font-weight: 600; text-shadow: 0 1px 6px rgba(0,0,0,0.6); }
@@ -438,8 +459,10 @@ TEMPLATE = r'''<!DOCTYPE html>
 <nav>
   <a href="#essentials">Essentiels</a>
   <a href="#regions">Régions</a>
+  <a href="#itineraires">Itinéraires</a>
   <a href="#cuisine">Cuisine</a>
   <a href="#saisons">Saisons</a>
+  <a href="#lexique">Lexique</a>
   <a href="#pratique">Pratique</a>
 </nav>
 
@@ -480,6 +503,42 @@ TEMPLATE = r'''<!DOCTYPE html>
   </section>
 </div>
 
+<div id="itineraires" style="background:var(--bg);">
+  <section class="itin-wrap">
+    <p class="section-label">Itinéraires sur mesure</p>
+    <h2 class="section-title">Combien de <em>jours</em> ?</h2>
+    <div class="divider"></div>
+    <p style="font-size:1rem;line-height:1.9;color:#555a66;max-width:680px;font-weight:300;margin-bottom:2rem;">
+      Deux itinéraires clés en main selon le temps dont vous disposez.
+    </p>
+    <div class="itin-toggle">
+      <button class="itin-btn active" onclick="showItin('itin7', this)">7 jours · l'essentiel</button>
+      <button class="itin-btn" onclick="showItin('itin14', this)">14 jours · en profondeur</button>
+    </div>
+    <div class="itin active" id="itin7">
+      <div class="day"><div class="day-num">J1</div><div class="day-body"><h4>Tokyo, immersion</h4><p>Carrefour de Shibuya, sanctuaire Meiji et Harajuku, panorama depuis la Tokyo Skytree.</p></div></div>
+      <div class="day"><div class="day-num">J2</div><div class="day-body"><h4>Tokyo, traditions</h4><p>Sensō-ji à Asakusa, croisière sur la Sumida, néons de Shinjuku le soir.</p></div></div>
+      <div class="day"><div class="day-num">J3</div><div class="day-body"><h4>Excursion</h4><p>Kamakura et son Grand Bouddha, ou les sanctuaires forestiers de Nikkō.</p></div></div>
+      <div class="day"><div class="day-num">J4</div><div class="day-body"><h4>Fuji &amp; Hakone</h4><p>Onsen au pied du Mont Fuji, lac Ashi et téléphérique ; nuit en ryokan.</p></div></div>
+      <div class="day"><div class="day-num">J5</div><div class="day-body"><h4>Kyoto</h4><p>Shinkansen vers l'ancienne capitale ; Fushimi Inari, ruelles de Gion au crépuscule.</p></div></div>
+      <div class="day"><div class="day-num">J6</div><div class="day-body"><h4>Kyoto &amp; Nara</h4><p>Kinkaku-ji, bambouseraie d'Arashiyama, daims en liberté de Nara.</p></div></div>
+      <div class="day"><div class="day-num">J7</div><div class="day-body"><h4>Osaka &amp; départ</h4><p>Château d'Osaka, effervescence de Dōtonbori, vol retour.</p></div></div>
+    </div>
+    <div class="itin" id="itin14">
+      <div class="day"><div class="day-num">J1·3</div><div class="day-body"><h4>Tokyo</h4><p>La capitale en profondeur, plus une excursion (Kamakura ou Nikkō).</p></div></div>
+      <div class="day"><div class="day-num">J4</div><div class="day-body"><h4>Hakone / Fuji</h4><p>Onsen et lac Ashi, nuit en ryokan face au Mont Fuji.</p></div></div>
+      <div class="day"><div class="day-num">J5</div><div class="day-body"><h4>Takayama</h4><p>Cap sur les Alpes : vieille ville d'Edo et brasseries de saké.</p></div></div>
+      <div class="day"><div class="day-num">J6</div><div class="day-body"><h4>Shirakawa-gō &amp; Kanazawa</h4><p>Fermes aux toits de chaume, puis le superbe jardin Kenroku-en.</p></div></div>
+      <div class="day"><div class="day-num">J7·8</div><div class="day-body"><h4>Kyoto &amp; Nara</h4><p>Temples, geishas, jardins zen et le Grand Bouddha de Nara.</p></div></div>
+      <div class="day"><div class="day-num">J9</div><div class="day-body"><h4>Osaka</h4><p>Capitale gourmande, château et quartier de Dōtonbori.</p></div></div>
+      <div class="day"><div class="day-num">J10</div><div class="day-body"><h4>Hiroshima &amp; Miyajima</h4><p>Mémorial de la paix et torii flottant d'Itsukushima.</p></div></div>
+      <div class="day"><div class="day-num">J11</div><div class="day-body"><h4>Naoshima</h4><p>Journée sur l'île de l'art contemporain.</p></div></div>
+      <div class="day"><div class="day-num">J12·13</div><div class="day-body"><h4>Hokkaidō ou Okinawa</h4><p>Vol intérieur : grands espaces du Nord ou lagons turquoise du Sud.</p></div></div>
+      <div class="day"><div class="day-num">J14</div><div class="day-body"><h4>Départ</h4><p>Retour vers Tokyo et vol international.</p></div></div>
+    </div>
+  </section>
+</div>
+
 <div id="cuisine">
   <section>
     <p class="section-label">03 — Gastronomie</p>
@@ -514,6 +573,27 @@ TEMPLATE = r'''<!DOCTYPE html>
       <div class="legende-item"><div class="legende-dot" style="background:#3FA796;"></div> Été — chaud &amp; humide</div>
       <div class="legende-item"><div class="legende-dot" style="background:#D9772B;"></div> Automne — kōyō (idéal)</div>
       <div class="legende-item"><div class="legende-dot" style="background:#6E8DC9;"></div> Hiver — neige &amp; onsen</div>
+    </div>
+  </section>
+</div>
+
+<div id="lexique" style="background:white;padding:1px 0;">
+  <section>
+    <p class="section-label">Lexique de survie</p>
+    <h2 class="section-title">Quelques <em>mots</em> de japonais</h2>
+    <div class="divider"></div>
+    <p style="font-size:1rem;line-height:1.9;color:#555a66;max-width:680px;font-weight:300;">
+      Quelques mots qui ouvrent bien des portes — et des sourires. Un simple « arigatō » est toujours apprécié.
+    </p>
+    <div class="lexique-grid">
+      <div class="lex"><div class="local">Konnichiwa</div><div class="pron">ko-ni-tchi-wa</div><div class="fr">Bonjour</div></div>
+      <div class="lex"><div class="local">Arigatō</div><div class="pron">a-ri-ga-tô (gozaimasu)</div><div class="fr">Merci</div></div>
+      <div class="lex"><div class="local">Hai / Iie</div><div class="pron">haï / ii-é</div><div class="fr">Oui / Non</div></div>
+      <div class="lex"><div class="local">Sumimasen</div><div class="pron">sou-mi-ma-sèn</div><div class="fr">Pardon / excusez-moi</div></div>
+      <div class="lex"><div class="local">Ikura desu ka ?</div><div class="pron">i-kou-ra dèss ka</div><div class="fr">Combien ?</div></div>
+      <div class="lex"><div class="local">Oishii</div><div class="pron">oï-chii</div><div class="fr">C'est délicieux</div></div>
+      <div class="lex"><div class="local">Toire wa doko ?</div><div class="pron">to-i-ré wa do-ko</div><div class="fr">Où sont les toilettes ?</div></div>
+      <div class="lex"><div class="local">Sayōnara</div><div class="pron">sa-yô-na-ra</div><div class="fr">Au revoir</div></div>
     </div>
   </section>
 </div>
@@ -589,6 +669,14 @@ TEMPLATE = r'''<!DOCTYPE html>
     info.style.opacity = 0;
     setTimeout(() => { info.innerHTML = '<strong>' + d.label + '</strong><br>' + d.text; info.style.opacity = 1; }, 200);
     info.style.transition = 'opacity 0.2s';
+  }
+
+  function showItin(id, btn) {
+    const wrap = btn.closest('.itin-wrap');
+    wrap.querySelectorAll('.itin').forEach(x => x.classList.remove('active'));
+    wrap.querySelectorAll('.itin-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
   }
 
   const observer = new IntersectionObserver((entries) => {
